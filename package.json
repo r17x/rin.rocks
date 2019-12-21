@@ -1,0 +1,44 @@
+{
+  "name": "gatsby-starter-reasonml",
+  "description": "Gatsby starter to create static sites using type-safe ReasonML.",
+  "version": "2.0.0",
+  "author": "Ian Wilson <iwilsonq@gmail.com>",
+  "dependencies": {
+    "bs-css": "^11.0.0",
+    "bs-date-fns": "^0.1.6",
+    "bs-platform": "^5.2.1",
+    "core-js": "^3.4.7",
+    "gatsby": "^2.18.6",
+    "gatsby-plugin-manifest": "^2.2.31",
+    "gatsby-plugin-offline": "^3.0.26",
+    "gatsby-plugin-react-helmet": "^3.1.16",
+    "gatsby-source-filesystem": "^2.1.40",
+    "gatsby-transformer-remark": "^2.6.39",
+    "normalize-css": "^2.3.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "reason-react": "^0.7.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "bsb -make-world",
+    "build": "gatsby build",
+    "dev:bsb": "bsb -make-world -w",
+    "dev:gatsby": "gatsby develop",
+    "clean": "bsb -clean-world",
+    "format": "prettier --write '**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "graphql_ppx": "^0.2.8",
+    "prettier": "^1.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iwilsonq/gatsby-starter-reasonml"
+  }
+}
