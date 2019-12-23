@@ -50,7 +50,7 @@ function Bio(Props) {
             }, React.createElement("img", {
                   className: img,
                   alt: "ri7nz",
-                  src: "/images/ri7nz.jpg"
+                  src: "/images/me.png"
                 }), React.createElement("p", {
                   className: bioText
                 }, "Written by ri7nz <ri7nz.labs@gmail.com>", React.createElement("a", {

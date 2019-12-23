@@ -17,7 +17,7 @@ module Styles = {
 [@react.component]
 let make = () =>
   <div className=Styles.wrapper>
-    <img src="/images/ri7nz.jpg" alt="ri7nz" className=Styles.img />
+    <img src="/images/me.png" alt="ri7nz" className=Styles.img />
     <p className=Styles.bioText>
       {"Written by ri7nz <ri7nz.labs@gmail.com>" |> str}
       <a href="https://twitter.com/ri7nz">
