@@ -9,3 +9,6 @@ yarn-error.log
 
 # BuckleScript
 /lib
+.bsb.lock
+.graphql_ppx_cache
+.merlin
