@@ -49,12 +49,12 @@ function Bio(Props) {
               className: wrapper
             }, React.createElement("img", {
                   className: img,
-                  alt: "Ian Wilson",
-                  src: "/images/iwilsonq.jpg"
+                  alt: "ri7nz",
+                  src: "/images/ri7nz.jpg"
                 }), React.createElement("p", {
                   className: bioText
-                }, "Written by Ian Wilson who lives and works in Cupertino building useful things.", React.createElement("a", {
-                      href: "https://twitter.com/iwilsonq"
+                }, "Written by ri7nz <ri7nz.labs@gmail.com>", React.createElement("a", {
+                      href: "https://twitter.com/ri7nz"
                     }, "You should follow him on Twitter")));
 }
 

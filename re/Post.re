@@ -14,7 +14,7 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~post) => {
+let make = (~post) =>
   <article className=Styles.article>
     <Gatsby.Link
       _to={"/blog/" ++ post##frontmatter##path} className=Styles.link>
@@ -25,4 +25,3 @@ let make = (~post) => {
       {post##frontmatter##date |> Utils.formatDate |> str}
     </small>
   </article>;
-};

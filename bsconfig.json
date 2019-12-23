@@ -19,7 +19,7 @@
     "bs-date-fns"
   ],
   "ppx-flags": [
-    "graphql_ppx/ppx"
+      ["graphql_ppx/ppx", "-verbose","-schema=graphql_schema.json"]
   ],
   "refmt": 3
 }

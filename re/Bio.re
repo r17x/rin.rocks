@@ -15,17 +15,15 @@ module Styles = {
 };
 
 [@react.component]
-let make = () => {
+let make = () =>
   <div className=Styles.wrapper>
-    <img src="/images/iwilsonq.jpg" alt="Ian Wilson" className=Styles.img />
+    <img src="/images/ri7nz.jpg" alt="ri7nz" className=Styles.img />
     <p className=Styles.bioText>
-      {"Written by Ian Wilson who lives and works in Cupertino building useful things."
-       |> str}
-      <a href="https://twitter.com/iwilsonq">
+      {"Written by ri7nz <ri7nz.labs@gmail.com>" |> str}
+      <a href="https://twitter.com/ri7nz">
         {"You should follow him on Twitter" |> str}
       </a>
     </p>
   </div>;
-};
 
 let default = make;
