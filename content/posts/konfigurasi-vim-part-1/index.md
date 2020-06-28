@@ -5,7 +5,11 @@ slug: /konfigurasi-vim-part-1
 tags:
     - vim
     - tools
+banner: ./sample-linux.png
 ---
+
+![Banner](./sample-linux.png)
+
 
 Karena `WHY NOT` menggunakan `vim` dalam keseharian ? 
 
@@ -113,7 +117,7 @@ Untuk persoalan `antarmuka` atau `interface` atau jenis pekerjaanya para `fronte
 `NERDTree`, `plugin` yang bertugas seperti ini 
    
    
-![NERDTree](/images/vim-nerdtree.png)
+![NERDTree](./vim-nerdtree.png)
    
 
 Hal - hal yang saya sukai:
@@ -126,7 +130,7 @@ Untuk `theme` dan `style` saya menggunakan `one dark` sebagai `color scheme`, de
 Hal menarik dari `plugin` ini adalah:
    
 
-![edge](/images/sainhe-edge.png)
+![edge](./sainhe-edge.png)
 
    
 * memiliki `variant` [edge dark (aura), edge dark (neon),  edge light].
