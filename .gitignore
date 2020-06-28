@@ -12,3 +12,5 @@ yarn-error.log
 .bsb.lock
 .graphql_ppx_cache
 .merlin
+**/*.swo
+**/*.swp
