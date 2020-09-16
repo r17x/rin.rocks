@@ -119,5 +119,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
+    `gatsby-theme-waves`,
   ],
 }

@@ -1,0 +1,42 @@
+---
+title: Bleeding edge with Reason Relay 
+date: 2020-07-15
+slug: /reason-relay-graphql-its-cool
+tags:
+    - ReasonML
+    - Relay
+    - React
+    - Graphql
+---
+import { CodeWave } from "gatsby-theme-waves"
+
+Kali ini saya ingin berbagi tentang pengembangan antaramuka (_UI Development_) dengan menggunakan _ReactJS_ sebagai _UI Library_, _Relay_ sebagai _Graphql Client Library_, dan _Reason_ sebagai bahasa yang digunakan untuk menulis program tersebut (HAIL Strongly Typed).
+
+Sebelumnya, saya memiliki sebuah ~fun project~ project yang dibuat saat melamar pekerjaan, ditempat bekerja saya sekarang ([@warungpintar.co](@warungpintar.co)).
+
+
+<CodeWave>
+
+
+```js  
+import gql from 'graphql-tag'
+```
+
+#### Graphql Query menggunakan `graphql-tag`
+Untuk kalian pengguna `Javascript`, kita dapat menuliskan _query graphql_ menggunakan pustaka `graphql-tag`. Hal yang paling umum dan sering kita lakukan pertama kali yakni `import`, setelah menambahkan pustaka tersebut.
+   
+Disini, kita meng-_import_ `default` dengan memberikan penamaan `gql`.
+
+```js 3:13
+import gql from 'graphql-tag'
+
+const GET_ALL_POKEMONS = gql`
+ // pasang query mu disini. 
+`
+```
+
+Maka, kita dapat mendeklarasikan sebuah `variable` yang berisikan `query graphql` dengan menggunakan _Sintaksis_ dari `graphql-tag`, seperti _Code_ diberikut.
+
+</CodeWave>
+
+> NANTI DILANJUT
