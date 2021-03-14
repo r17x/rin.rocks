@@ -3,4 +3,18 @@ title: Today I learned
 slug: "/til"
 ---
 
-* Just make this page, called `TIL`.
+<!-- vim-markdown-toc GFM -->
+
+* [Export GPG](#export-gpg)
+
+<!-- vim-markdown-toc -->
+## Export GPG 
+this is an example how to "backup" your "GPG/PGP":
+- basic
+```shell
+❯ gpg  --armor --export <email/key-id> > my_secret.asc
+```
+- use `paperkey`
+```shell
+❯ gpg --export-secret-key <email/key-id> | paperkey --output my_secret.asc
+```
