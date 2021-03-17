@@ -5,10 +5,11 @@ slug: "/til"
 
 <!-- vim-markdown-toc GFM -->
 
-* [Export GPG](#export-gpg)
+* [Vault: Export GPG](#vault-export-gpg)
+* [ReScript: Quickly evaluate code in terminal](#rescript-quickly-evaluate-code-in-terminal)
 
 <!-- vim-markdown-toc -->
-## Export GPG 
+## Vault: Export GPG 
 this is an example how to "backup" your "GPG/PGP":
 - basic
 ```shell
@@ -18,3 +19,28 @@ this is an example how to "backup" your "GPG/PGP":
 ```shell
 ❯ gpg --export-secret-key <email/key-id> | paperkey --output my_secret.asc
 ```
+
+## ReScript: Quickly evaluate code in terminal
+In the toolchain `bs-platform` have a `bsc` for compile a **ReScript** or **ReasonML** code to **JavaScript** code (./node_modules/.bin/bsc).
+We can **evaluate** a **ReScript/ReasonML** code in terminal, like this:
+- basic usage
+```shell 
+bsc -e "<ReScript>" | node 
+```
+- basic and generated javascript 
+```shell
+bsc -e "<ReScript>" > Code.js
+```
+- Pipe and perform in **NodeJs**
+```shell
+❯ ./node_modules/.bin/bsc -e "
+let rec fib = {
+  | 0 | 1 => n
+  | n => fib(n - 1) + fib(n - 2)
+  }
+
+6->fib->Js.log2(\"Result of fib 6:\", _) 
+" | node
+Result of fib 6: 8
+```
+**See** [Detail Here](https://rescript-lang.org/docs/manual/latest/try#quickly-evaluate-code-in-terminal)
