@@ -1,7 +1,9 @@
 ---
 title: How to fix rtop in Archlinux
-date: 2019-12-21
-slug: /rtop-can-t-run-in-archlinux 
+date: 
+updatedAt: 
+tags:
+  - linux
 ---
 
 WORK in PRogress.
