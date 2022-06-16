@@ -1,7 +1,6 @@
 import { remarkCodeHike } from "@code-hike/mdx";
 import _withMDX from "@next/mdx";
 import rehypeStringify from "rehype-stringify";
-// import remarkHTML from 'remark-html'
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkGithub from "remark-github";
