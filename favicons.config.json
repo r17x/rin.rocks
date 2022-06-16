@@ -1,0 +1,12 @@
+{
+  "appName": "r17x - if you know, you know",
+  "appShortName": "r17x",
+  "icons": {
+    "android": true,
+    "appleIcon": true,
+    "favicons": true,
+    "windows": true,
+    "yandex": true
+  },
+  "path": "/assets"
+}
