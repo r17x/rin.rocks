@@ -65,7 +65,7 @@
     "@code-hike/mdx": "^0.5.3-next.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@mdx-js/loader": "^2.1.1",
+    "@mdx-js/loader": "^2",
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
     "framer-motion": "^5",
