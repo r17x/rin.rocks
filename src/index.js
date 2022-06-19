@@ -84,6 +84,8 @@ export const getMeta = (source) =>
     .then(jsonSerialize)
     .then((a) => ({ ...a, slug: getContentName(source) }));
 
+const noFilter = (fn) => (process.env.NODE_ENV === "development" ? (x) => x : fn);
+
 export const sortByContentDate = (arr) => arr.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 export const filterByContentDate = (a) => a.filter((b) => Boolean(b.date));
 
@@ -100,7 +102,7 @@ const _getAllPosts = (...args) =>
     .then((files) => Promise.all(files.map(async (f) => getMeta(f))))
     .then(compose(...args));
 
-export const getAllPosts = () => _getAllPosts(filterByContentDate, sortByContentDate);
+export const getAllPosts = () => _getAllPosts(noFilter(filterByContentDate), sortByContentDate);
 
 export const getBySlug = (slug) =>
   getContents("./content/posts/")
