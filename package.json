@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npx favicons-compiled-cli  -i public/r17x.png -o public/assets --config favicons.config.json --html public/meta-tags.html --jsx components/meta-tags.js",
+    "prebuild": "yarn favicons-compiled -i public/r17x.png -o public/assets --config favicons.config.json --html public/meta-tags.html --jsx components/meta-tags.js",
     "build": "yarn lint --fix=true && next build",
     "preexport": "yarn build",
     "export": "next export",
@@ -90,6 +90,7 @@
     "eslint-config-next": "^12",
     "eslint-plugin-mdx": "^1",
     "eslint-plugin-unused-imports": "^2",
+    "favicons-compiled-cli": "0.0.5",
     "remark-cli": "^10",
     "remark-lint": "^9",
     "remark-preset-lint-recommended": "^6"
