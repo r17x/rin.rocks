@@ -1,35 +1,11 @@
-import { remarkCodeHike } from "@code-hike/mdx";
 import _withMDX from "@next/mdx";
-import rehypeStringify from "rehype-stringify";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import remarkGithub from "remark-github";
-import codeHikeThemes from "shiki/themes/nord.json" assert { type: "json" };
+import {rehypePlugins, remarkPlugins } from './config.mjs'
 
 /** @type <A>(...fns: A[]) => <B>(x: B) => B */
 const compose =
   (...fns) =>
   (x) =>
     fns.reduce((g, f) => f(g), x);
-
-export const remarkPlugins = [
-  remarkFrontmatter,
-  // [remarkReadingTime, { attribute: "reading" }],
-  // remarkReadingTimeMDX,
-  // remarkImages,
-  //  remarkMdxImages,
-  // remarkUnwrapImages,
-  // gatsbyRemarkCopyImages,
-  remarkGfm,
-  remarkGithub,
-  // [remarkCopyLinkedFiles, {destinationDir: path.resolve("public/content/img")}],
-  [remarkCodeHike, { theme: codeHikeThemes, autoImport: false, showExpandButton: true, showCopyButton: true }],
-];
-
-export const rehypePlugins = [
-  // [rehypeImgSize, {dir: "public"}],
-  rehypeStringify,
-];
 
 const withMDX = _withMDX({
   extension: /\.mdx?$/,

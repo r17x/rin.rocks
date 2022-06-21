@@ -1,4 +1,4 @@
-import { rehypePlugins, remarkPlugins } from "../next.config.mjs";
+import { rehypePlugins, remarkPlugins } from "../config";
 
 import fs from "fs/promises";
 import { globby } from "globby";
