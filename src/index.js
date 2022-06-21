@@ -1,4 +1,4 @@
-import { rehypePlugins, remarkPlugins } from "../next.config.mjs";
+import { rehypePlugins, remarkPlugins } from "../config";
 
 import fs from "fs/promises";
 import { globby } from "globby";
@@ -84,7 +84,7 @@ export const getMeta = (source) =>
     .then(jsonSerialize)
     .then((a) => ({ ...a, slug: getContentName(source) }));
 
-const noFilter = (fn) => (process.env.NODE_ENV === "development" ? (x) => x : fn());
+const noFilter = (fn) => (process.env.NODE_ENV === "development" ? (x) => x : fn);
 
 export const sortByContentDate = (arr) => arr.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 export const filterByContentDate = (a) => a.filter((b) => Boolean(b.date));
