@@ -63,7 +63,7 @@ const Home = ({ posts }) => (
         pb="2"
       >
         <Heading as="h2">Recent Posts</Heading>
-        <Link>see all posts</Link>
+        <Link href="/posts">see all posts</Link>
       </Flex>
       <Posts posts={posts} />
     </Stack>
