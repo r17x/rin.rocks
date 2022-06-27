@@ -61,6 +61,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "@chakra-icons/bootstrap": "^1",
     "@chakra-ui/react": "^2",
     "@code-hike/mdx": "^0.5.3-next.0",
     "@emotion/react": "^11",

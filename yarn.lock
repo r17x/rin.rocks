@@ -218,6 +218,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@chakra-icons/bootstrap@^1":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@chakra-icons/bootstrap/-/bootstrap-1.2.0.tgz#d2e46fa8c18f97cc7369b39eb922919736a2bac7"
+  integrity sha512-21y2WCl45JnNG6+rY5I3GUqRBLwwWlvvaKu0qZsFpCIQC76LOd/AWp+j8a7kF30z4M/EUFZBPOOIAJ2Fc3f+Gg==
+
 "@chakra-ui/accordion@2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@chakra-ui/accordion/-/accordion-2.0.3.tgz#4f9db1459698fd91d68f913fe7f6d1687cefabbd"
