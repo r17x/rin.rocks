@@ -94,6 +94,7 @@
     "favicons-compiled-cli": "0.0.5",
     "remark-cli": "^10",
     "remark-lint": "^9",
-    "remark-preset-lint-recommended": "^6"
+    "remark-preset-lint-recommended": "^6",
+    "rescript": "^9"
   }
 }

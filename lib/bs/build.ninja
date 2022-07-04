@@ -1,0 +1,13 @@
+rescript = 1
+rule astj
+  command = /Users/r17/evl/rin.rocks/node_modules/rescript/darwin/bsc.exe  -bs-v 9.1.4  -absname -bs-ast -o $out $i
+o src/Content.ast : astj ../../src/Content.res
+rule deps
+  command = /Users/r17/evl/rin.rocks/node_modules/rescript/darwin/bsb_helper.exe -hash 134c52cde644f6805c417b2e5b551966 $in
+  restat = 1
+o src/Content.d : deps src/Content.ast
+rule mij
+  command = /Users/r17/evl/rin.rocks/node_modules/rescript/darwin/bsc.exe -I src   -bs-package-name rin_rocks -bs-package-output commonjs:lib/js/$in_d:.js $i
+  dyndep = 1
+  restat = 1
+o src/Content.cmj src/Content.cmi ../js/src/Content.js : mij src/Content.ast
