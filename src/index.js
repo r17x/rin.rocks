@@ -1,4 +1,4 @@
-import { rehypePlugins, remarkPlugins } from "../config";
+import { rehypePlugins, remarkPlugins } from "../config.mjs";
 
 import fs from "fs/promises";
 import { globby } from "globby";
