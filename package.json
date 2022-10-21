@@ -60,6 +60,9 @@
     "singleQuote": false,
     "trailingComma": "all"
   },
+  "resolutions": {
+    "favicons-compiled": "file:./favicons-compiled-v0.0.5.tgz"
+  },
   "dependencies": {
     "@chakra-icons/bootstrap": "^1",
     "@chakra-ui/react": "^2",
@@ -69,6 +72,8 @@
     "@mdx-js/loader": "^2",
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
+    "favicons-compiled": "file:./favicons-compiled-v0.0.5.tgz",
+    "favicons-compiled-cli": "file:./favicons-compiled-cli-v0.0.5.tgz",
     "framer-motion": "^5",
     "globby": "^13",
     "next": "^12",
@@ -91,7 +96,6 @@
     "eslint-config-next": "^12",
     "eslint-plugin-mdx": "^1",
     "eslint-plugin-unused-imports": "^2",
-    "favicons-compiled-cli": "0.0.5",
     "remark-cli": "^10",
     "remark-lint": "^9",
     "remark-preset-lint-recommended": "^6"
