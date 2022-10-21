@@ -1,20 +1,18 @@
-import { getLayout } from "../../components";
+import { getLayout, ListPosts } from "../../components";
 import { getAllPosts } from "../../src";
 
-import { List, ListItem } from "@chakra-ui/react";
-import Link from "next/link";
+import { Flex, Heading, Stack } from "@chakra-ui/react";
 
 export const getStaticProps = () => getAllPosts().then((posts) => ({ props: { posts } }));
 
 const Posts = ({ posts }) => {
   return (
-    <List>
-      {posts.map((post) => (
-        <ListItem key={post.slug}>
-          <Link href={"/posts/".concat(post.slug)}>{post.title}</Link>
-        </ListItem>
-      ))}
-    </List>
+    <Stack>
+      <Flex borderBottomWidth="medium" borderColor="whiteAlpha.500" pb="2">
+        <Heading as="h2">Posts</Heading>
+      </Flex>
+      <ListPosts posts={posts} />
+    </Stack>
   );
 };
 

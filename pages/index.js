@@ -1,37 +1,13 @@
-import { getLayout } from "../components";
+import { getLayout, ListPosts } from "../components";
 import { getAllPosts } from "../src";
 
 import { Github, Link as LinkIcon } from "@chakra-icons/bootstrap";
-import {
-  ButtonGroup,
-  Code,
-  Flex,
-  Heading,
-  IconButton,
-  Link,
-  List,
-  ListItem,
-  Stack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { ButtonGroup, Code, Flex, Heading, IconButton, Link, Stack, Text, VStack } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 
 export const getStaticProps = () =>
   getAllPosts((a) => a.filter((b) => Boolean(b.date))).then((posts) => ({ props: { posts } }));
-
-const Posts = ({ posts }) => (
-  <List>
-    {posts.map((post) => (
-      <ListItem key={post.slug}>
-        <NextLink href={"/posts/".concat(post.slug)}>
-          <Link colorScheme="whiteAlpha">{post.title}</Link>
-        </NextLink>
-      </ListItem>
-    ))}
-  </List>
-);
 
 /** @typedef
 type SocialLink = {
@@ -117,7 +93,7 @@ const Home = ({ posts }) => (
           <Link color="white">see all posts</Link>
         </NextLink>
       </Flex>
-      <Posts posts={posts} />
+      <ListPosts posts={posts} />
     </Stack>
   </>
 );

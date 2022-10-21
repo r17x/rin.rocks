@@ -1,5 +1,7 @@
 import { ArrowLeftShort as ArrowLeft } from "@chakra-icons/bootstrap";
 import {
+  AspectRatio,
+  Badge,
   Box,
   Button,
   ChakraProvider,
@@ -10,7 +12,14 @@ import {
   HStack,
   IconButton,
   Link,
+  List,
   ListItem,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Portal,
+  Stack,
   Text,
   UnorderedList,
   VStack,
@@ -133,12 +142,27 @@ export const Footer = ({ children }) => (
   </VStack>
 );
 
+export const HideInIframe = ({ children }) => {
+  const isInIframe = (() => {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  })();
+
+  if (isInIframe) return null;
+  return children;
+};
+
 export const Layout = ({ children }) => (
   <VStack bgColor="#1A202C" color="whitesmoke" minH="100vh" minW="100vw">
-    <Container maxW="container.md" minH="96vh">
+    <Container maxW="container.md" minH="96vh" mt="10">
       {children}
     </Container>
-    <Navigation />
+    <HideInIframe>
+      <Navigation />
+    </HideInIframe>
     <Footer>
       © {new Date().getFullYear()} - r17x with <Code>You</Code>
       {"."}
@@ -149,4 +173,54 @@ export const Layout = ({ children }) => (
 export const getLayout = (componentPage) => <Layout>{componentPage}</Layout>;
 export const getLayoutPosts = (componentPage) => (
   <MDXProvider components={components}>{getLayout(componentPage)}</MDXProvider>
+);
+
+export const ListPosts = ({ posts }) => (
+  <List spacing="1em">
+    {posts.map((post) => (
+      <ListItem
+        key={post.slug}
+        _hover={{ color: "purple.500" }}
+        bgColor="blackAlpha.200"
+        borderColor="blackAlpha.300"
+        borderRadius="lg"
+        borderStyle="solid"
+        borderWidth="thin"
+        boxShadow="md"
+        color="white"
+        cursor="pointer"
+        p="3"
+      >
+        <Popover isLazy trigger="hover">
+          <PopoverTrigger>
+            <Stack spacing="0.7em">
+              <Heading as="h2" fontSize="lg" fontWeight="bold">
+                <NextLink href={`posts/${post.slug}`}>
+                  <Link color="currentcolor">{post.title}</Link>
+                </NextLink>
+              </Heading>
+              <HStack>
+                <Badge>{new Date(post.date).toLocaleDateString()}</Badge>
+                {post.tags.map((tag) => (
+                  <Badge key={tag} colorScheme="purple" fontSize="0.5em">
+                    {tag}
+                  </Badge>
+                ))}
+              </HStack>
+              {post.description ? <Text color="whiteAlpha.700">{post.description}</Text> : null}
+            </Stack>
+          </PopoverTrigger>
+          <Portal>
+            <PopoverContent>
+              <PopoverBody>
+                <AspectRatio ratio={16 / 9}>
+                  <iframe sandbox="allow-same-origin" src={`posts/${post.slug}?iframe=666yoi`} title={post.title} />
+                </AspectRatio>
+              </PopoverBody>
+            </PopoverContent>
+          </Portal>
+        </Popover>
+      </ListItem>
+    ))}
+  </List>
 );
