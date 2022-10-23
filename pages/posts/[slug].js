@@ -28,6 +28,25 @@ const Post = ({ content, meta }) => {
     return <SkeletonText noOfLines={5} />;
   }
 
+  const seoProps = {
+    title: meta.title,
+    description: meta.description || "",
+    openGraph: {
+      type: "website",
+      title: meta.title,
+      description: meta.description || "",
+      url: `/posts/${meta.slug}`,
+      images: [
+        {
+          url: `/api/og?title=${meta.title}`,
+          width: 800,
+          height: 600,
+          alt: meta.title,
+        },
+      ],
+    },
+  };
+
   const img = ({ src, ...props }) => (
     <Image
       alt={src}
@@ -42,7 +61,7 @@ const Post = ({ content, meta }) => {
 
   return (
     <>
-      <NextSeo title={meta.title} />
+      <NextSeo {...seoProps} />
       <Heading pb={4} size="2xl">
         {meta.title}
       </Heading>
