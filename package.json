@@ -61,7 +61,7 @@
     "trailingComma": "all"
   },
   "resolutions": {
-    "favicons-compiled": "file:./favicons-compiled-v0.0.5.tgz"
+    "favicons-compiled": "./favicons-compiled-v0.0.5.tgz"
   },
   "dependencies": {
     "@chakra-icons/bootstrap": "^1",
@@ -72,6 +72,7 @@
     "@mdx-js/loader": "^2",
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
+    "@vercel/og": "^0.0.20",
     "favicons-compiled": "./favicons-compiled-v0.0.5.tgz",
     "favicons-compiled-cli": "./favicons-compiled-cli-v0.0.5.tgz",
     "framer-motion": "^5",
