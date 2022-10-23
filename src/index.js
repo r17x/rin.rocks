@@ -114,3 +114,8 @@ export const getBySlug = (slug) =>
       content,
       meta: jsonSerialize({ ...content.frontmatter, slug }),
     }));
+
+export const getSponsors = (username) =>
+  fetch(
+    `https://${process.env.PUBLIC_URL || process.env.NEXT_PUBLIC_VERCEL_URL}/api/sponsors?username=${username}`,
+  ).then((r) => r.json());
