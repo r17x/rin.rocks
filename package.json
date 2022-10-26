@@ -92,6 +92,7 @@
     "shiki": "^0"
   },
   "devDependencies": {
+    "@rescript/react": "^0.10.3",
     "eslint": "^8",
     "eslint-config-kdnj": "^2",
     "eslint-config-next": "^12",
@@ -99,6 +100,8 @@
     "eslint-plugin-unused-imports": "^2",
     "remark-cli": "^10",
     "remark-lint": "^9",
-    "remark-preset-lint-recommended": "^6"
+    "remark-preset-lint-recommended": "^6",
+    "rescript": "^10.0.1",
+    "rescript-chakra": "^1.2.0-next.11"
   }
 }
