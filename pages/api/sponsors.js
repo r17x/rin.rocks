@@ -4,6 +4,7 @@ export const config = {
 
 const ghGQLURL = process.env.GH_GRAPHQL_URL || "";
 const ghToken = process.env.GH_TOKEN || "";
+const authorization = `bearer ${ghToken}`;
 
 const ok = (data) => ({ data, error: null });
 const error = (error_) => ({ data: null, error: error_ });
@@ -47,7 +48,6 @@ const sponsorsQuery = ({ login, first }) =>
 }
     `;
 
-const authorization = `bearer ${ghToken}`;
 const getSponsors = (login) =>
   fetch(ghGQLURL, {
     method: "POST",
