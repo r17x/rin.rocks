@@ -4,6 +4,7 @@
   "repository": "r17x/rin.rocks",
   "private": true,
   "scripts": {
+    "postinstall": "patch-package",
     "dev": "next dev",
     "prebuild": "yarn favicons-compiled -i public/r17x.png -o public/assets --config favicons.config.json --html public/meta-tags.html --jsx components/meta-tags.js",
     "build": "yarn lint --fix=true && next build",
@@ -22,7 +23,6 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint-config-kdnj/react",
       "next"
     ],
     "overrides": [
@@ -61,28 +61,32 @@
     "trailingComma": "all"
   },
   "resolutions": {
-    "favicons-compiled": "./favicons-compiled-v0.0.5.tgz"
+    "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz"
   },
   "dependencies": {
     "@chakra-icons/bootstrap": "^1",
     "@chakra-ui/react": "^2",
-    "@code-hike/mdx": "^0.5.3-next.0",
+    "@code-hike/mdx": "^0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@giscus/react": "^2.2.0",
     "@mdx-js/loader": "^2",
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
     "@vercel/og": "^0.0.20",
-    "favicons-compiled": "./favicons-compiled-v0.0.5.tgz",
-    "favicons-compiled-cli": "./favicons-compiled-cli-v0.0.5.tgz",
+    "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz",
+    "favicons-compiled-cli": "./patches/favicons-compiled-cli-v0.0.5.tgz",
     "framer-motion": "^5",
     "globby": "^13",
+    "mdx-mermaid": "^1",
+    "mermaid": "^9",
     "next": "^13",
     "next-mdx-remote": "^4",
     "next-seo": "^5",
     "ramda": "^0",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-mermaid2": "^0.1.4",
     "rehype-stringify": "^9",
     "remark-frontmatter": "^4",
     "remark-gfm": "^3",
@@ -94,9 +98,11 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-kdnj": "^2",
-    "eslint-config-next": "^12",
+    "eslint-config-next": "^13.0.1",
     "eslint-plugin-mdx": "^1",
     "eslint-plugin-unused-imports": "^2",
+    "fetch.macro": "^1",
+    "patch-package": "^6",
     "remark-cli": "^10",
     "remark-lint": "^9",
     "remark-preset-lint-recommended": "^6"
