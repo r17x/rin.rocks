@@ -1,4 +1,6 @@
-import { ArrowLeftShort as ArrowLeft } from "@chakra-icons/bootstrap";
+import { useEffect, useState } from "react";
+
+import { ArrowLeft } from "@chakra-icons/bootstrap";
 import {
   AspectRatio,
   Badge,
@@ -18,9 +20,9 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-  Portal,
   Stack,
   Text,
+  theme as baseTheme,
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
@@ -42,8 +44,15 @@ const withChildren =
 
 const components = {
   Test: () => null,
+  a: Link,
   h1: withChildren(Heading, { as: "h1", size: "xl", py: 4 }),
-  h2: withChildren(Heading, { as: "h2", size: "l", py: 3 }),
+  h2: withChildren(Heading, {
+    as: "h2",
+    textDecorationColor: "primary",
+    textDecoration: "underline",
+    size: "l",
+    py: 3,
+  }),
   h3: withChildren(Heading, { as: "h3", size: "md", py: 3 }),
   h4: withChildren(Heading, { as: "h4", size: "sm", py: 3 }),
   p: withChildren(Text, { as: "p", pb: 2 }),
@@ -70,6 +79,9 @@ const components = {
 };
 
 const theme = extendTheme({
+  colors: {
+    primary: baseTheme.colors.purple,
+  },
   components: {
     Link: {
       variants: {
@@ -143,13 +155,11 @@ export const Footer = ({ children }) => (
 );
 
 export const HideInIframe = ({ children }) => {
-  const isInIframe = (() => {
-    try {
-      return window.self !== window.top;
-    } catch (e) {
-      return true;
-    }
-  })();
+  const [isInIframe, setIsInIframe] = useState(true);
+
+  useEffect(() => {
+    setIsInIframe(window.self !== window.top);
+  }, []);
 
   if (isInIframe) return null;
   return children;
@@ -210,15 +220,13 @@ export const ListPosts = ({ posts }) => (
               {post.description ? <Text color="whiteAlpha.700">{post.description}</Text> : null}
             </Stack>
           </PopoverTrigger>
-          <Portal>
-            <PopoverContent>
-              <PopoverBody>
-                <AspectRatio ratio={16 / 9}>
-                  <iframe sandbox="allow-same-origin" src={`posts/${post.slug}?iframe=666yoi`} title={post.title} />
-                </AspectRatio>
-              </PopoverBody>
-            </PopoverContent>
-          </Portal>
+          <PopoverContent>
+            <PopoverBody>
+              <AspectRatio ratio={16 / 9}>
+                <iframe sandbox="allow-same-origin" src={`posts/${post.slug}?iframe=666yoi`} title={post.title} />
+              </AspectRatio>
+            </PopoverBody>
+          </PopoverContent>
         </Popover>
       </ListItem>
     ))}
