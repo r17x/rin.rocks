@@ -1,5 +1,10 @@
+import { rehypePlugins, remarkPlugins } from "./config.mjs";
+
 import _withMDX from "@next/mdx";
-import {rehypePlugins, remarkPlugins } from './config.mjs'
+// import { createRequire } from "module";
+// import * as url from "url";
+// const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+// const require = createRequire(import.meta.url);
 
 /** @type <A>(...fns: A[]) => <B>(x: B) => B */
 const compose =
@@ -18,9 +23,10 @@ const withMDX = _withMDX({
 
 /** @type {import('next').NextConfig} */
 const config = {
-  future: {
-    webpack5: false,
+  experimental: {
+    swcPlugins: [["fetch.macro/swc"]],
   },
+  swcMinify: true,
   images: {
     loader: "custom",
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
