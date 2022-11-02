@@ -10,8 +10,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { MDXRemote } from "next-mdx-remote";
 import { NextSeo } from "next-seo";
+import { Mermaid } from "mdx-mermaid/lib/Mermaid"
 
-const Mermaid = dynamic(() => import("mdx-mermaid/lib/Mermaid").then((m) => m.Mermaid), { ssr: false });
 const Giscus = dynamic(() => import("@giscus/react"), { ssr: false });
 
 const toPaths = (paths) => ({ paths, fallback: true });
