@@ -76,6 +76,7 @@
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
     "@vercel/og": "^0.0.20",
+    "@vercel/analytics": "^0",
     "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz",
     "favicons-compiled-cli": "./patches/favicons-compiled-cli-v0.0.5.tgz",
     "framer-motion": "^5",
