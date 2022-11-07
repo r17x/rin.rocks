@@ -23,6 +23,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "kdnj/react",
       "next"
     ],
     "overrides": [
@@ -61,6 +62,7 @@
     "trailingComma": "all"
   },
   "resolutions": {
+    "eslint-plugin-react-hooks": "4.6.0",
     "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz"
   },
   "dependencies": {
