@@ -202,7 +202,7 @@ ping({method: "GET", headers: {...}})
 
 2. `babel-plugin-react-suspense` karena malas menulis pembungkus component yang dapat `suspensed` pada react maka saya membuat bagaimana implementasi `React.Suspense` lebih sederhana.
 
-```javascriptreact
+```javascript
 <User suspense={<Loading />} />
 
          ↓ ↓ ↓ ↓ ↓ ↓
