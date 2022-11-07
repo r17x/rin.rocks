@@ -1,6 +1,6 @@
 import { AppProvider } from "../components";
 
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((x) => x);
@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <AppProvider>
       {children}
-      <Analytics />
+      {/** <Analytics />*/}
     </AppProvider>
   );
 }
