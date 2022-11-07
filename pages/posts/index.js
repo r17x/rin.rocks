@@ -3,7 +3,8 @@ import { getAllPosts } from "../../src";
 
 import { Flex, Heading, Stack } from "@chakra-ui/react";
 
-export const getStaticProps = () => getAllPosts((a) => a.filter((b) => Boolean(b.date))).then((posts) => ({ props: { posts } }));
+export const getStaticProps = () =>
+  getAllPosts((a) => a.filter((b) => Boolean(b.date))).then((posts) => ({ props: { posts } }));
 
 const Posts = ({ posts }) => {
   return (

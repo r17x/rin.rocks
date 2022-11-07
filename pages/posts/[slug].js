@@ -4,13 +4,13 @@ import { getLayoutPosts } from "../../components";
 import { getBySlug, getContentName, getContents } from "../../src";
 
 import { Heading, SkeletonText, Stack } from "@chakra-ui/react";
+import { Mermaid } from "mdx-mermaid/lib/Mermaid";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 // eslint-disable-next-line
 import { useRouter } from "next/router";
 import { MDXRemote } from "next-mdx-remote";
 import { NextSeo } from "next-seo";
-import { Mermaid } from "mdx-mermaid/lib/Mermaid"
 
 const Giscus = dynamic(() => import("@giscus/react"), { ssr: false });
 
