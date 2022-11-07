@@ -16,6 +16,7 @@ import {
   Link,
   List,
   ListItem,
+  OrderedList,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -45,18 +46,20 @@ const withChildren =
 const components = {
   Test: () => null,
   a: Link,
-  h1: withChildren(Heading, { as: "h1", size: "xl", py: 4 }),
+  h1: withChildren(Heading, { as: "h1", size: "xl", py: 4, letterSpacing: "2%" }),
   h2: withChildren(Heading, {
     as: "h2",
     textDecorationColor: "primary",
     textDecoration: "underline",
-    size: "l",
-    py: 3,
+    size: "xl",
+    letterSpacing: "2%",
+    lineHeight: "2em",
   }),
   h3: withChildren(Heading, { as: "h3", size: "md", py: 3 }),
   h4: withChildren(Heading, { as: "h4", size: "sm", py: 3 }),
-  p: withChildren(Text, { as: "p", pb: 2 }),
+  p: withChildren(Text, { as: "p", lineHeight: "1.85em" }),
   ul: withChildren(UnorderedList, { pl: 6 }),
+  ol: withChildren(OrderedList, { pl: 6 }),
   li: withChildren(ListItem, { pb: 1 }),
   blockquote: ({ children, ...props }) => (
     <Box
