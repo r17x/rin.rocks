@@ -25,9 +25,6 @@ const responseError = (e) =>
     },
   });
 
-const filterByHasSponsorListing = (sponsor) => sponsor.hasSponsorsListing;
-const removeSponsorsField = ({ hasSponsorsListing: _, ...fields }) => fields;
-
 const sponsorsQuery = ({ login, first }) =>
   `query { 
       user(login: "${login}"){
@@ -48,33 +45,41 @@ const sponsorsQuery = ({ login, first }) =>
 }
     `;
 
-const getSponsors = (login) =>
-  fetch(ghGQLURL, {
-    method: "POST",
-    headers: { authorization },
-    body: JSON.stringify({
-      query: sponsorsQuery({ login }),
-      variables: {},
-    }),
-  })
-    .then((r) => r.json())
-    .then(({ data }) => ({
-      ...data,
-      user: {
-        ...data.user,
-        sponsorsCount: data.user.sponsors.totalCount,
-        sponsors: data.user.sponsors.nodes.filter(filterByHasSponsorListing).map(removeSponsorsField),
-      },
-    }));
+const getSponsors = (opts) => fetch(ghGQLURL, opts).then((r) => r.json());
+
+const filterByHasSponsorListing = (sponsor) => sponsor.hasSponsorsListing;
+const removeSponsorsField = ({ hasSponsorsListing: _, ...fields }) => fields;
+const mapSponsorsData = ({ data }) => ({
+  ...data,
+  user: {
+    ...data.user,
+    sponsorsCount: data.user.sponsors.totalCount,
+    sponsors: data.user.sponsors.nodes.filter(filterByHasSponsorListing).map(removeSponsorsField),
+  },
+});
 
 export default function Sponsors(req) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const login = searchParams.get("username") || "";
-    if (login.length === 0) throw new Error("username params is required!");
-
-    return getSponsors(login).then(responseOk).catch(responseError);
-  } catch (e) {
-    return responseError(e);
-  }
+  return Promise.resolve(new URL(req.url))
+    .then(({ searchParams }) => searchParams.get("username") || "")
+    .then((username) =>
+      ({
+        [true]: () => username,
+        [username.length === 0]: () => {
+          throw new Error("username params is required!");
+        },
+      }.true()),
+    )
+    .then((login) =>
+      getSponsors({
+        method: "POST",
+        headers: { authorization },
+        body: JSON.stringify({
+          query: sponsorsQuery({ login }),
+          variables: {},
+        }),
+      }),
+    )
+    .then(mapSponsorsData)
+    .then(responseOk)
+    .catch(responseError);
 }
