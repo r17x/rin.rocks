@@ -75,8 +75,8 @@
     "@mdx-js/loader": "^2",
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
-    "@vercel/og": "^0.0.20",
     "@vercel/analytics": "^0",
+    "@vercel/og": "^0.0.20",
     "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz",
     "favicons-compiled-cli": "./patches/favicons-compiled-cli-v0.0.5.tgz",
     "framer-motion": "^5",
@@ -101,7 +101,7 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-kdnj": "^2",
-    "eslint-config-next": "^13.0.1",
+    "eslint-config-next": "^13",
     "eslint-plugin-mdx": "^1",
     "eslint-plugin-unused-imports": "^2",
     "fetch.macro": "^1",

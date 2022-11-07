@@ -1,5 +1,117 @@
+diff --git a/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs b/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs
+index 4e8228f..2f13519 100644
+--- a/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs
++++ b/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs
+@@ -1,10 +1,10 @@
+-'use strict';
++const visit = require("unist-util-visit").visit;
+ 
+-var visit = require('unist-util-visit');
+-
+-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
++function _interopDefaultLegacy(e) {
++  return e && typeof e === "object" && "default" in e ? e : { default: e };
++}
+ 
+-var visit__default = /*#__PURE__*/_interopDefaultLegacy(visit);
++const visit__default = /*#__PURE__*/ _interopDefaultLegacy(visit);
+ 
+ /**
+  * Copyright (c) Samuel Wall.
+@@ -19,49 +19,49 @@ var visit__default = /*#__PURE__*/_interopDefaultLegacy(visit);
+  * @returns Function to transform mdxast.
+  */
+ function plugin(config) {
+-    /**
+-     * Insert the component import into the document.
+-     * @param ast The document to insert into.
+-     */
+-    function insertImport(ast) {
+-        // See if there is already an import for the Mermaid component
+-        let importFound = false;
+-        visit__default["default"](ast, { type: 'import' }, (node) => {
+-            if (/\s*import\s*{\s*Mermaid\s*}\s*from\s*'mdx-mermaid(\/lib)?\/Mermaid'\s*;?\s*/.test(node.value)) {
+-                importFound = true;
+-                return visit__default["default"].EXIT;
+-            }
+-        });
+-        // Add the Mermaid component import to the top
+-        if (!importFound) {
+-            ast.children.splice(0, 0, {
+-                type: 'import',
+-                value: 'import { Mermaid } from \'mdx-mermaid/lib/Mermaid\';'
+-            });
+-        }
++  /**
++   * Insert the component import into the document.
++   * @param ast The document to insert into.
++   */
++  function insertImport(ast) {
++    // See if there is already an import for the Mermaid component
++    let importFound = false;
++    visit__default.default(ast, { type: "import" }, (node) => {
++      if (/\s*import\s*{\s*Mermaid\s*}\s*from\s*'mdx-mermaid(\/lib)?\/Mermaid'\s*;?\s*/.test(node.value)) {
++        importFound = true;
++        return visit__default.default.EXIT;
++      }
++    });
++    // Add the Mermaid component import to the top
++    if (!importFound) {
++      ast.children.splice(0, 0, {
++        type: "import",
++        value: "import { Mermaid } from 'mdx-mermaid/lib/Mermaid';",
++      });
+     }
+-    return async function transformer(ast) {
+-        // Find all the mermaid diagram code blocks. i.e. ```mermaid
+-        const instances = [];
+-        visit__default["default"](ast, { type: 'code', lang: 'mermaid' }, (node, index, parent) => {
+-            instances.push([node, index, parent]);
+-        });
+-        // Replace each Mermaid code block with the Mermaid component
+-        instances.forEach(([node, index, parent], i) => {
+-            parent.children.splice(index, 1, {
+-                type: 'mermaidCodeBlock',
+-                data: {
+-                    hName: 'Mermaid',
+-                    hProperties: {
+-                        config: i > 0 ? undefined : JSON.stringify(config),
+-                        chart: node.value
+-                    }
+-                }
+-            });
+-        });
+-        insertImport(ast);
+-        return ast;
+-    };
++  }
++  return async function transformer(ast) {
++    // Find all the mermaid diagram code blocks. i.e. ```mermaid
++    const instances = [];
++    visit__default.default(ast, { type: "code", lang: "mermaid" }, (node, index, parent) => {
++      instances.push([node, index, parent]);
++    });
++    // Replace each Mermaid code block with the Mermaid component
++    instances.forEach(([node, index, parent], i) => {
++      parent.children.splice(index, 1, {
++        type: "mermaidCodeBlock",
++        data: {
++          hName: "Mermaid",
++          hProperties: {
++            config: i > 0 ? undefined : JSON.stringify(config),
++            chart: node.value,
++          },
++        },
++      });
++    });
++    insertImport(ast);
++    return ast;
++  };
+ }
+ 
+ module.exports = plugin;
 diff --git a/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs b/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs
-index ba80703..d3f834e 100644
+index ba80703..ec29fe1 100644
 --- a/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs
 +++ b/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs
 @@ -1,4 +1,4 @@
@@ -8,7 +120,7 @@ index ba80703..d3f834e 100644
  
  /**
   * Copyright (c) Samuel Wall.
-@@ -13,49 +13,33 @@ import visit from 'unist-util-visit';
+@@ -13,49 +13,49 @@ import visit from 'unist-util-visit';
   * @returns Function to transform mdxast.
   */
  function plugin(config) {
@@ -32,7 +144,26 @@ index ba80703..d3f834e 100644
 -                value: 'import { Mermaid } from \'mdx-mermaid/lib/Mermaid\';'
 -            });
 -        }
--    }
++  /**
++   * Insert the component import into the document.
++   * @param ast The document to insert into.
++   */
++  function insertImport(ast) {
++    // See if there is already an import for the Mermaid component
++    let importFound = false;
++    visit(ast, { type: "import" }, (node) => {
++      if (/\s*import\s*{\s*Mermaid\s*}\s*from\s*'mdx-mermaid(\/lib)?\/Mermaid'\s*;?\s*/.test(node.value)) {
++        importFound = true;
++        return visit.EXIT;
++      }
++    });
++    // Add the Mermaid component import to the top
++    if (!importFound) {
++      ast.children.splice(0, 0, {
++        type: "import",
++        value: "import { Mermaid } from 'mdx-mermaid/lib/Mermaid';",
++      });
+     }
 -    return async function transformer(ast) {
 -        // Find all the mermaid diagram code blocks. i.e. ```mermaid
 -        const instances = [];
@@ -55,11 +186,7 @@ index ba80703..d3f834e 100644
 -        insertImport(ast);
 -        return ast;
 -    };
-+  /**
-+   * Insert the component import into the document.
-+   * @param ast The document to insert into.
-+   */
-+  function insertImport(ast) {}
++  }
 +  return async function transformer(ast) {
 +    // Find all the mermaid diagram code blocks. i.e. ```mermaid
 +    const instances = [];
