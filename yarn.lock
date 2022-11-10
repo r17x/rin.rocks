@@ -7450,10 +7450,10 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-fetch.macro@^1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/fetch.macro/-/fetch.macro-1.8.1.tgz#11c96f17ba9eea8dc77f8e58f45ccc371cd7bcb6"
-  integrity sha512-WaQquRCyGbdzonFdLq2IoBKp7OzRYjpW4ZRhzCfJl2FQ7xeoQtgDhG2MvRFu/YcBOc/aeXD4IogJvZKIePgQlg==
+fetch.macro@^1.9:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/fetch.macro/-/fetch.macro-1.9.0.tgz#b09728de61c6ee212524c5c7c7e9b175e04c7f0e"
+  integrity sha512-JwXeTbnd/5mADkfwQfuutMTCj7RBu7PhpXjfX6bPjecVkIvk+j+nE+3hKSceeau5C52sh38f4NkVLa/8JvufuA==
 
 fflate@^0.7.3:
   version "0.7.4"

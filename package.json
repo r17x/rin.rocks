@@ -104,7 +104,7 @@
     "eslint-config-next": "^13",
     "eslint-plugin-mdx": "^1",
     "eslint-plugin-unused-imports": "^2",
-    "fetch.macro": "^1",
+    "fetch.macro": "^1.9",
     "patch-package": "^6",
     "remark-cli": "^10",
     "remark-lint": "^9",
