@@ -35,8 +35,8 @@ _Low level_ adalah sebuah bahasa lanjutan dan menjadi hasil _compilation_ bahasa
 
 
 ```mermaid
-flowchart LR
-  Start[High Level] --> Compiler --> Stop[Low Level]
+flowchart LR;
+  Start[High Level] --> Compiler --> Stop[Low Level];
 ```
 
 ### Transpiler

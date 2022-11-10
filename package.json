@@ -61,6 +61,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.7.1",
     "@chakra-icons/bootstrap": "^1",
     "@chakra-ui/react": "^2",
     "@code-hike/mdx": "^0",

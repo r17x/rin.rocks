@@ -8,11 +8,12 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 // eslint-disable-next-line
 import { useRouter } from "next/router";
+import Script from "next/script";
 import { MDXRemote } from "next-mdx-remote";
 import { NextSeo } from "next-seo";
 
 const Giscus = dynamic(() => import("@giscus/react"), { ssr: false });
-const Mermaid = dynamic(() => import("mdx-mermaid/lib/Mermaid").then((m) => m.Mermaid), { ssr: false });
+const Mermaid = dynamic(() => import("mdx-mermaid/lib/Mermaid").then((m) => m.Mermaid));
 
 const toPaths = (paths) => ({ paths, fallback: true });
 const toProps = ({ meta, content }) => ({ props: { content, meta } });
@@ -88,6 +89,7 @@ const Post = ({ content, meta }) => {
           theme="preferred_color_scheme"
         />
       </Stack>
+      <Script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" strategy="worker" />
     </>
   );
 };

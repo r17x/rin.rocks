@@ -24,6 +24,7 @@ const withMDX = _withMDX({
 /** @type {import('next').NextConfig} */
 const config = {
   experimental: {
+    nextScriptWorkers: true,
     swcPlugins: [["fetch.macro/swc"]],
   },
   swcMinify: true,
