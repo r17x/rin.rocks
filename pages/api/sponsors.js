@@ -1,3 +1,5 @@
+import f from "fetch.macro";
+
 export const config = {
   runtime: "experimental-edge",
 };
@@ -45,11 +47,11 @@ const sponsorsQuery = ({ login, first }) =>
 }
     `;
 
-const getSponsors = (opts) => fetch(ghGQLURL, opts).then((r) => r.json());
+const getSponsors = f.json`${ghGQLURL}`;
 
 const filterByHasSponsorListing = (sponsor) => sponsor.hasSponsorsListing;
 const removeSponsorsField = ({ hasSponsorsListing: _, ...fields }) => fields;
-const mapSponsorsData = ({ data }) => ({
+const hidePrivateSponsors = ({ data }) => ({
   ...data,
   user: {
     ...data.user,
@@ -59,27 +61,43 @@ const mapSponsorsData = ({ data }) => ({
 });
 
 export default function Sponsors(req) {
-  return Promise.resolve(new URL(req.url))
-    .then(({ searchParams }) => searchParams.get("username") || "")
-    .then((username) =>
-      ({
-        [true]: () => username,
-        [username.length === 0]: () => {
-          throw new Error("username params is required!");
-        },
-      }.true()),
-    )
-    .then((login) =>
-      getSponsors({
-        method: "POST",
-        headers: { authorization },
-        body: JSON.stringify({
-          query: sponsorsQuery({ login }),
-          variables: {},
-        }),
+  /**
+   * @param {URL} url
+   * @return {string}
+   */
+  const getUsernameParams = ({ searchParams }) => searchParams.get("username") || "";
+
+  /**
+   * @param {string} username
+   * @return {string|Error}
+   */
+  const validateUsernameParams = (username) =>
+    ({
+      [true]: () => username,
+      [username.length === 0]: () => {
+        throw new Error("username params is required!");
+      },
+    }.true());
+
+  /**
+   * @param {string} username
+   * @return {Promise<T>}
+   */
+  const getSponsorsWithUsername = (username) =>
+    getSponsors({
+      method: "POST",
+      headers: { authorization },
+      body: JSON.stringify({
+        query: sponsorsQuery({ login: username }),
+        variables: {},
       }),
-    )
-    .then(mapSponsorsData)
+    });
+
+  return Promise.resolve(new URL(req.url))
+    .then(getUsernameParams)
+    .then(validateUsernameParams)
+    .then(getSponsorsWithUsername)
+    .then(hidePrivateSponsors)
     .then(responseOk)
     .catch(responseError);
 }
