@@ -47,8 +47,12 @@ const sponsorsQuery = ({ login, first }) =>
 }
     `;
 
+/**
+ * @typedef {Object} SponsorsResponse
+ * @property {Object|null} data
+ * @property {Object|null} error
+ */
 const getSponsors = f.json`${ghGQLURL}`;
-
 const filterByHasSponsorListing = (sponsor) => sponsor.hasSponsorsListing;
 const removeSponsorsField = ({ hasSponsorsListing: _, ...fields }) => fields;
 const hidePrivateSponsors = ({ data }) => ({
@@ -60,6 +64,10 @@ const hidePrivateSponsors = ({ data }) => ({
   },
 });
 
+/**
+ * @param {import('next').NextApiRequest} req
+ * @return {Promise<SponsorsResponse>}
+ */
 export default function Sponsors(req) {
   /**
    * @param {URL} url
@@ -72,12 +80,12 @@ export default function Sponsors(req) {
    * @return {string|Error}
    */
   const validateUsernameParams = (username) =>
-    ({
-      [true]: () => username,
-      [username.length === 0]: () => {
-        throw new Error("username params is required!");
-      },
-    }.true());
+  ({
+    [true]: () => username,
+    [username.length === 0]: () => {
+      throw new Error("username params is required!");
+    },
+  }.true());
 
   /**
    * @param {string} username
@@ -99,5 +107,5 @@ export default function Sponsors(req) {
     .then(getSponsorsWithUsername)
     .then(hidePrivateSponsors)
     .then(responseOk)
-    .catch(responseError);
+    .catch(responseError)
 }
