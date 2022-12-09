@@ -1,5 +1,5 @@
 diff --git a/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs b/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs
-index 4e8228f..2f13519 100644
+index 4e8228f..330be20 100644
 --- a/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs
 +++ b/node_modules/mdx-mermaid/lib/mdxast-mermaid.cjs
 @@ -1,10 +1,10 @@
@@ -104,14 +104,14 @@ index 4e8228f..2f13519 100644
 +        },
 +      });
 +    });
-+    insertImport(ast);
++    // insertImport(ast);
 +    return ast;
 +  };
  }
  
  module.exports = plugin;
 diff --git a/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs b/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs
-index ba80703..ec29fe1 100644
+index ba80703..3dfd396 100644
 --- a/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs
 +++ b/node_modules/mdx-mermaid/lib/mdxast-mermaid.mjs
 @@ -1,4 +1,4 @@
@@ -206,7 +206,7 @@ index ba80703..ec29fe1 100644
 +        },
 +      });
 +    });
-+    insertImport(ast);
++    // insertImport(ast);
 +    return ast;
 +  };
  }
