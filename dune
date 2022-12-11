@@ -1,0 +1,11 @@
+(executable
+ (name rin_rocks)
+ (libraries dream)
+ (public_name rin_rocks)
+ (preprocess (pps lwt_ppx)))
+
+(rule
+ (target assets.ml)
+ (deps (source_tree assets))
+ (action (with-stdout-to %{null}
+  (run ocaml-crunch -m plain assets -o %{target}))))
