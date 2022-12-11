@@ -21,8 +21,12 @@ import { NextSeo } from "next-seo";
 
 export const getStaticProps = () =>
   Promise.all([getAllPosts((a) => a.filter((b) => Boolean(b.date))), getSponsors("r17x")]).then(
-    ([posts, { data: sponsors }]) => ({ props: { posts, sponsors } }),
-  );
+    ([posts, { data: sponsors }]) => ({ props: { posts, sponsors }, fallback: true}),
+  ).catch(() => ({
+    props: {posts: [], sponsors: {
+      user: {sponsors: []}
+    }}
+  }));
 
 /** @typedef
 type SocialLink = {

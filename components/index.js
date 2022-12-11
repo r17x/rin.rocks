@@ -42,7 +42,6 @@ const withChildren =
         {children}
       </Component>
     );
-
 const components = {
   Test: () => null,
   a: Link,
@@ -61,6 +60,7 @@ const components = {
   ul: withChildren(UnorderedList, { pl: 6 }),
   ol: withChildren(OrderedList, { pl: 6 }),
   li: withChildren(ListItem, { pb: 1 }),
+// eslint-disable-next-line
   blockquote: ({ children, ...props }) => (
     <Box
       as="blockquote"

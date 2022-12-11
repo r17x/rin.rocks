@@ -1,13 +1,11 @@
 {
   "name": "@ri7nz/rocks",
-  "version": "0",
+  "version": "0.0.0",
   "repository": "r17x/rin.rocks",
   "private": true,
   "scripts": {
-    "postinstall": "patch-package",
     "dev": "next dev",
-    "prebuild": "yarn favicons-compiled -i public/r17x.png -o public/assets --config favicons.config.json --html public/meta-tags.html --jsx components/meta-tags.js",
-    "build": "yarn lint --fix=true && next build",
+    "build": "next build",
     "preexport": "yarn build",
     "export": "next export",
     "start": "next start",
@@ -23,7 +21,6 @@
   },
   "eslintConfig": {
     "extends": [
-      "kdnj/react",
       "next"
     ],
     "overrides": [
@@ -38,6 +35,7 @@
       }
     ],
     "plugins": [
+      "simple-import-sort",
       "unused-imports"
     ],
     "rules": {
@@ -61,10 +59,6 @@
     "singleQuote": false,
     "trailingComma": "all"
   },
-  "resolutions": {
-    "eslint-plugin-react-hooks": "4.6.0",
-    "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz"
-  },
   "dependencies": {
     "@chakra-icons/bootstrap": "^1",
     "@chakra-ui/react": "^2",
@@ -75,21 +69,23 @@
     "@mdx-js/loader": "^2",
     "@mdx-js/react": "^2",
     "@next/mdx": "^12",
+    "@ri7nz/favicons-compiled": "0.0.5",
+    "@ri7nz/favicons-compiled-cli": "0.0.7",
     "@vercel/analytics": "^0",
     "@vercel/og": "^0.0.20",
-    "favicons-compiled": "./patches/favicons-compiled-v0.0.5.tgz",
-    "favicons-compiled-cli": "./patches/favicons-compiled-cli-v0.0.5.tgz",
+    "eslint": "^8",
     "framer-motion": "^5",
     "globby": "^13",
-    "mdx-mermaid": "^1",
+    "hast-util-from-html": "^1.0.0",
+    "mdx-mermaid": "2.0.0-rc3",
     "mermaid": "^9",
     "next": "^13",
     "next-mdx-remote": "^4",
     "next-seo": "^5",
+    "puppeteer": "^19.4.0",
     "ramda": "^0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-mermaid2": "^0.1.4",
     "rehype-stringify": "^9",
     "remark-frontmatter": "^4",
     "remark-gfm": "^3",
@@ -99,15 +95,15 @@
     "shiki": "^0"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-kdnj": "^2",
+    "eslint-config-kentcdodds": "^20",
     "eslint-config-next": "^13",
     "eslint-plugin-mdx": "^1",
+    "eslint-plugin-simple-import-sort": "^8",
     "eslint-plugin-unused-imports": "^2",
     "fetch.macro": "^1.9",
-    "patch-package": "^6",
     "remark-cli": "^10",
     "remark-lint": "^9",
     "remark-preset-lint-recommended": "^6"
-  }
+  },
+  "packageManager": "yarn@3.3.0"
 }
