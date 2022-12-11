@@ -7,8 +7,5 @@ let () =
   Dream.run
   @@ Dream.logger
   @@ Dream.router [
-
-    Dream.get "/" (Dream.static ~loader "");
-
     Dream.get "/**" (Dream.static ~loader "");
   ]
