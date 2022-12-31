@@ -114,12 +114,14 @@
                 # Especially dependencies with native modules may need a Python installation.
                 buildInputs = [
                   pkgs.python3
-                  pkgs.xcbuild
                   pkgs.nodejs-18_x
                   (pkgs.yarn.override {
                     nodejs = pkgs.nodejs-18_x;
                   })
                   pkgs.ack
+                ] ++ lib.optionals
+                  pkgs.stdenv.isDarwin [
+                  pkgs.xcbuild
                 ];
 
                 # Example of invoking a build step in your project.
@@ -266,7 +268,17 @@
           devShells = {
             default = pkgs.mkShell {
               # Development tools
+              nativeBuildInputs = [
+                pkgs.python3
+              ];
+
               packages = [
+                # javascript
+                pkgs.nodejs-18_x
+                (pkgs.yarn.override {
+                  nodejs = pkgs.nodejs-18_x;
+                })
+
                 # Source file formatting
                 pkgs.nixpkgs-fmt
                 pkgs.ocamlPackages.ocamlformat
