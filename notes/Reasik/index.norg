@@ -1,0 +1,22 @@
+@document.meta
+title: Buku React
+description: 
+authors: r17
+categories: 
+created: 2023-01-03
+updated: 2023-01-03
+version: 1.0.0
+@end
+
+* [Pengantar](:pengantar:) 
+* [Pengenalan](:pengenalan:)
+* [Dasar](:dasar:)
+** [Fondasi Web](:fondasi_web:)
+*** [HTML](:html:)
+*** [CSS](:css:)
+*** [JavaScript](:javascript:)
+** [Fondasi React](:fondasi_react:)
+*** [element](:element:)
+*** [state](:state:)
+*** [props](:props:)
+*** [component](:component:)
