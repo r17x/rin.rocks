@@ -1,0 +1,34 @@
+@document.meta
+title: Bahasa Pemrograman ReScript
+description: 
+authors: r17x
+categories: [
+  programming language
+]
+created: 2023-01-03
+updated: 2023-01-03
+version: 1.0.0
+@end
+
+* [Pengantar](:pengantar:) 
+* [Pengenalan](:pengenalan:)
+** [Fitur Bahasa](:fitur_bahasa:)
+* [Dasar](:dasar:)
+** [Let Binding](:let_binding:)
+** [Type](:type:)
+** [Primitive Types](:primitie_types:)
+** [Tuple](:tuple:)
+** [Record](:record:)
+** [Object](:object:)
+** [Variant](:variant:)
+** [Polymorphic Variant](:polymorphic_variant:)
+** [null, undefined and option](:null_undefined_and_option:)
+** [array & list](:array_and_list:)
+** [Function](:function:)
+** [If-Else & Loops](:if_Else_and_loops:)
+** [Pipe](:pipe:)
+** [Pattern Matching / Destructuring](:pattern_matching_and_destructuring:)
+** [Mutation](:mutation:)
+** [JSX](:jsx:)
+** [Exception](:exception:)
+** [Lazy Value](:lazy_value:)
