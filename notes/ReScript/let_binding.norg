@@ -1,0 +1,20 @@
+@document.meta
+title: Let Binding
+description: 
+authors: r17x
+categories: []
+created: 2023-01-03
+updated: 2023-01-04
+version: 1.0.0
+@end
+
+* Let Binding
+  Dalam bahasa pemrograman yang lain biasanya disebut sebagai deklarasi /variable/. Namun, ReScript memiliki fitur dan fungsi yang berbeda dari sekedar deklarasi /variable/. Untuk menggunakan /let/ kita perlu memberikan `<name>[:type]= <value>`. Misalnya,
+
+  @code rescript
+  // menulis let tanpa memberitahu type
+  let hello = "world"
+
+  // menulis let dengan type
+  let hello: string = "world"
+  @end
