@@ -4,17 +4,56 @@ description:
 authors: r17x
 categories: []
 created: 2023-01-03
-updated: 2023-01-04
+updated: 2023-01-07
 version: 1.0.0
 @end
 
 * Let Binding
-  Dalam bahasa pemrograman yang lain biasanya disebut sebagai deklarasi /variable/. Namun, ReScript memiliki fitur dan fungsi yang berbeda dari sekedar deklarasi /variable/. Untuk menggunakan /let/ kita perlu memberikan `<name>[:type]= <value>`. Misalnya,
+  Dalam bahasa pemrograman yang lain biasanya disebut sebagai deklarasi /variable/. Namun, ReScript memiliki fitur dan fungsi yang berbeda dari sekedar deklarasi /variable/. Untuk menggunakan /let/ kita perlu memberikan `<name>[:type]= <value>`. Singkatnya, setiap nama yang diikat (/let <name>/) harus diberikan sebuah nilai (/value/) dan setiap nilai itu adalah sebuah hal yang disebut dengan ekspresi (/expression/). 
 
+  Ekspresi merupakan sebuah hal yang menghasilkan nilai dan nilai tersebut digunakan pada sebuah tempat dimana dia dibutuhkan. Contohnya nilai yang akan diberikan ke /variable/, argumen yang diberikan ke fungsi, atau operan untuk operator. Hal tersebut merupakan bentuk dari sebuah ekspresi.
+
+  Dalam bahasa pemrograman ini, kamu akan terbiasa menulis ekspresi dari pada pernyataan (/statements/).  Dan semua ekspresi yang kamu tulis harus memiliki definisi yang dimulai dengan /let/. Sehingga, makna lain dari /let/ adalah "ikatan", makanya disebut dengan "let-binding" (menyatakan sesuatu itu diikat, diikat dengan ekpresinya).
+ 
   @code rescript
   // menulis let tanpa memberitahu type
-  let hello = "world"
+  let hello = "world" // ✅ 
 
   // menulis let dengan type
-  let hello: string = "world"
+  let hello: string = "world" // ✅ 
+
+  // let phi: float
+  let phi = 3.14 // ✅ 
+
+  // menghitung luas lingkaran
+  // formula: phi . r . r 
+  // let circleArea: float => float
+  let circleArea = r => phi *. r *. r // ✅ 
+
+
+  // ❌ - Toplevel expression is expected to have unit type.
+  // hal berikut adalah bentuk ekspresi namun tidak memiliki tempat atau variable
+  // untuk menampung nilainya.
+  // Jika kita menuliskan ekspresi seperti ini, maka kita akan mendapatkan peringatan
+  //
+  // Toplevel expression is expected to have unit type.
+  if true {
+    1
+  }
+  else {
+    0
+  }
+
+
+  // ✅
+  // let putInPlace: int
+  let putInPlace = if true { 1 } else { 0 } 
+
+  // let putInPlace: string
+  let putInPlace = switch phi {
+    | 3.14 => "EXACTLY, YES"
+    | _ => "LEMME THINK ABOUT PHI"
+  }
   @end
+
+  
