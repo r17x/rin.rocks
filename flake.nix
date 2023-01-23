@@ -32,9 +32,8 @@
           # Legacy packages that have not been converted to flakes
           pkgs = (ocaml-overlay.makePkgs {
             inherit system;
-            # extraOverlays = [ (import ./nix/overlay.nix) ];
-          }).extend
-            (self: super: { ocamlPackages = super.ocaml-ng.ocamlPackages_5_0; });
+            extraOverlays = [ (import ./overlay) ];
+          });
 
           # OCaml packages available on nixpkgs
           ocamlPackages = pkgs.ocamlPackages;
@@ -151,6 +150,8 @@
             buildInputs = [
               ocamlPackages.dream
               ocamlPackages.lwt_ppx
+              ocamlPackages.reason
+              ocamlPackages.server-reason-react
               self.packages.${system}.${packageNextjs}
             ];
 
