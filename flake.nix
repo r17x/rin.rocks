@@ -28,13 +28,11 @@
     flake-utils.lib.eachDefaultSystem
       (system:
         let
-
           # Legacy packages that have not been converted to flakes
           pkgs = (ocaml-overlay.makePkgs {
             inherit system;
-            # extraOverlays = [ (import ./nix/overlay.nix) ];
-          }).extend
-            (self: super: { ocamlPackages = super.ocaml-ng.ocamlPackages_5_0; });
+            extraOverlays = [ (import ./overlay) ];
+          });
 
           # OCaml packages available on nixpkgs
           ocamlPackages = pkgs.ocamlPackages;
@@ -74,6 +72,16 @@
             };
           package = "rin_rocks";
           packageNextjs = "rin_rocks.nextjs";
+
+          run = pkg: "${pkgs.${pkg}}/bin/${pkg}";
+          run2 = pkg: bin: "${pkgs.${pkg}}/bin/${bin}";
+          scripts = with pkgs; [
+            (writeScriptBin "dev" ''
+              dune exec rin_rocks &
+              ${run "fswatch"} -o rin_rocks.ml -l 2 | xargs -L1 bash -c \
+                "killall rin_rocks || true; (dune exec rin_rocks || true) &"
+            '')
+          ];
         in
         {
           # Exposed packages that can be built or run with `nix build` or
@@ -93,17 +101,13 @@
 
               project = pkgs.callPackage ./yarn-project.nix
                 {
-
                   # Example of selecting a specific version of Node.js.
                   nodejs = pkgs.nodejs-18_x;
-
                 }
                 {
-
                   name = packageNextjs;
                   # Example of providing a different source tree.
                   src = sources.nextjs;
-
                 };
 
             in
@@ -151,6 +155,8 @@
             buildInputs = [
               ocamlPackages.dream
               ocamlPackages.lwt_ppx
+              ocamlPackages.reason
+              ocamlPackages.server-reason-react
               self.packages.${system}.${packageNextjs}
             ];
 
@@ -272,7 +278,7 @@
                 pkgs.python3
               ];
 
-              packages = [
+              packages = scripts ++ [
                 # javascript
                 pkgs.nodejs-18_x
                 (pkgs.yarn.override {
@@ -281,6 +287,8 @@
 
                 # Source file formatting
                 pkgs.nixpkgs-fmt
+                pkgs.dune_2
+                pkgs.ocamlPackages.merlin
                 pkgs.ocamlPackages.ocamlformat
                 # For `dune build --watch ...`
                 pkgs.fswatch
