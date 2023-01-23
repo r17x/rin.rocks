@@ -1,0 +1,30 @@
+@document.meta
+title: Tentang Neorg
+description: Serba serbi neorg 
+authors: r17x
+categories: [
+  neorg
+  taking-notes
+] 
+created: 2023-01-14
+updated: 2023-01-14
+version: 1.0.0
+@end
+
+* Using norg
+** export norg to markdown
+   open your index.norg and run command in neovim
+
+   @code neovim
+   :Neorg export <PATH_EXPORTED>
+
+   // or export as markdown file
+
+   :Neorg export index.md
+   @end
+
+** export with command line
+
+   @code bash
+   nvim --headless -c 'Neorg export to-file x.md' notes/index.norg -c 'quitall'
+   @end

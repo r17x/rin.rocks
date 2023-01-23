@@ -1,0 +1,38 @@
+@document.meta
+title: Menulis ulang JWT
+description: menulis ulang agar aku memahamimu dengan baik 
+authors: r17x
+categories: 
+created: 2023-01-14
+updated: 2023-01-23
+version: 1.0.0
+@end
+
+
+* Apa itu JWT
+  JWT - Dikenal dengan istilah /JSON web token/. Merupakan bagaimana cara berbagi informasi dengan menyamarkan informasi menjadi sebuah kumpulan karakter yang terdiri dari huruf, simbol, atau angka. Yang dapat membuat orang berteriak "APA INI????!". 
+  Bagaimana tidak membuat orang teriak, ketika melihat sebuah "KATA" seperti ini 
+  @code markdown
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IndhaCBpeWFrYWgsIG5nZXJpbnlhIiwiaWF0IjoxNTE2MjM5MDIyfQ.k3bpv6ExLYOpS26a1jT3jZs0XIlVsR87QAwBC4jSXY8
+  @end
+
+  Yah benar saja, sebuah informasi yang samar dan membuat orang tak tahu konteksnya apa, beda ketika melihat gambar dibawah ini.
+  @embed image
+  https://img.freepik.com/free-vector/hand-drawn-fuck-you-symbol_23-2148674548.jpg
+  @end
+
+  Apakah gambar tersebut cukup familiar? Mohon maaf sebelumnya, penulis tidak mengacungi kepada anda. Ketika melihat gambar tersebut hampir semua orang akan memahami gambar tersebut karena memiliki informasi yang dibentuk menjadi sebuah simbol jari tengah. Ketika melihat gambar tersebut, otak anda akan melakukan proses memecah sandi, jika kalian familiar maka semakin cepat otak anda mengelolah informasi dari sebuah simbol tersebut (karena adanya konsep memoize). Proses dalam mengenali gambar lalu mendapatkan informasinya, Dalam Komputer dikenal dengan istilah /decode/ (mengurai sandi). Ketika ada hal yang dapat diurai, maka ada proses yang membuat hal yang dapat diurai, dan proses membentuk disebut dengan /encode/.
+  @code shell
+  informasi -> menyamarkan -> informasi -> menguraikan -> informasi
+  @end
+
+  Dari urutan proses diatas, kita ketahui hal yang kita lakukan adalah berbagi informasi dengan "gaya". Kita juga ketahui, kita membutuhkan 2 proses. Yakni, "menyamarkan" dan "menguraikan". Jika kita sederhanakan, maka seperti ini
+  @code shell
+  A -> fx -> B -> fy -> A
+  @end
+
+  Konsepnya begitu sederhana, hanya mengubah sebuah informasi menjadi informasi baru yang tersamarkan. Lalu, timbullah pertanyaan "Bagaimana memahami informasi yang tersamarkan tersebut?". Jawabannya adalah kita perlu membuat kesepakatan bagaimana tata cara, aturan, dan struktur informasi yang kita buat menjadi informasi yang tersamarkan. Hal tersebut biasanya disebut dengan "spesifikasi".
+
+* Belajar membaca spesifikasi
+* Mencoba menulis 
+* Kesimpulan

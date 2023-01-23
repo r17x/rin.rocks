@@ -1,0 +1,29 @@
+@document.meta
+title: Skeptisme tentang DATA di aplikasi depan
+description: frontend atau client apps itu tak dapat dipercaya 
+authors: r17x
+categories: 
+created: 2023-01-03
+updated: 2023-01-03
+version: 1.0.0
+@end
+
+* Pengantar
+  | karena TAK diantar maka TAK dijemput
+
+** Skeptisme tentang DATA di aplikasi depan
+
+*** Skeptisme
+   Skeptisme adalah rasa atau sebuah kepercayaan bahwa ragu, cenderung mencurigai, dan bahkan TAK PERCAYA terhadap sesuatu. dalam cerita kali ini saya ingin curhat kepada kalian bahwa sesuatu yang kita sebut sebagai data pada sebuah aplikasi yang sifatnya digunakan dan berjalan pada piranti pengguna (sipaling layer 8) adalah sesuatu hal yang tidak dapat kita percaya namun dapat kita atur dan membuatnya seolah - olah dapat dipercaya. Kepercayaan menurut para legenda adalah sebuah hal yang sangat penting lebih dari sekedar materi. Maka, kita perlu dan sepakat dengan mengandalkan sebuah hal yang kita sebut sebagai integritas (integrity). Integritas, bagaimana kita saling terhubung dan saling percaya disaat proses pertukaran informasi terjadi (2 pihak atau lebih, kalau lu sendiri yah mungkin lo saling berintegritas dengan yang namanya TUHAN)
+   Hal menarik dari Kepercayaan dan Skeptisme seperti memberitahu monyet untuk datang ke Monas. Bahwa, di Monas ada banyak pisang. Ketika kamu memberitahu monyet tersebut dia tidak akan Percaya dan melakukan apa yang diperintahkan karena 2 hal tadi tidak ada pada makhluk yang kita sebut BINATANG. 2 hal itu yah Kepercayaan dan Skeptisme. Menurut saya 2 hal tersebut saling berkesinambungan (circular dependency).
+
+*** Client dan Server
+   Umumnya, Mainstreamnya, aplikasi yang dikembangkan pada akhir zaman ini ialah aplikasi yang berlandaskan sebuah hubungan dan kepercayaan dari 2 platform atau piranti yang berperan sebagai client dan server. Server, digunakan sebagai lingkungan untuk menjalankan aplikasi yang sifatnya menyediakan sumber daya agar aplikasi yang berjalan pada perangkat pengguna dapat berjalan sebagaimana mestinya. Dan kita sebut 2 hal itu ialah backend dan frontend. backend dan frontend ini ibaratnya sebuah cafe dimana kamu berkunjung dan memesan sebuah pilihan dari menu yang diberikan oleh barista 
+
+  @code ocaml
+   let x = "client"
+   let y = "server"
+   let apps = x ^ y
+   (* output: "clientserver" *)
+   @end
+

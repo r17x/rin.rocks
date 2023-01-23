@@ -1,0 +1,65 @@
+@document.meta
+title: graphql
+description: 
+authors: r17x
+categories: [
+  graphql
+  graphql-tools
+]
+created: 2023-01-14
+updated: 2023-01-14
+version: 1.0.0
+@end
+
+* Using grapqhl-codegen
+** example code
+   @code yaml
+   schema:
+     # - <GRAPHQL_SERVER_URL>
+   
+   documents:
+     - src/**/*.gql
+     - '!./src/**/*.gen.*'
+   
+   extensions:
+     codegen:
+       generates:
+         src/generated/types.d.ts:
+           config:
+             namingConvention:
+               typeNames: 'change-case-all#pascalCase'
+               enumValues: 'change-case-all#upperCase'
+             skipTypename: true
+             onlyOperationTypes: true
+           plugins:
+              - typescript
+              - typescript-operations
+   
+         src/generated/fetcher.gen.ts:
+           preset: import-types
+           presetConfig:
+             typesPath: ./types.d
+           plugins:
+             - typescript-graphql-request
+           config:
+             skipTypename: true
+   
+         src/:
+           preset: near-operation-file
+           presetConfig: 
+             extension: '.gen.ts'
+             baseTypesPath: 'generated/types.d'
+           plugins:
+             - typescript-react-query
+           config:
+             fetcher: 
+               func: '../../generated/fetcher#sawarnaFetcher'
+               isReactHook: false 
+             skipTypename: true
+             addOperationExport: true
+       hooks:
+         afterOneFileWrite: 
+           - prettier --write
+           - eslint --fix
+   @end
+

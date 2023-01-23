@@ -1,0 +1,18 @@
+@document.meta
+title: rin.rocks notes with norg
+description: personal taking notes with org-mode like (norg) 
+authors: r17x
+categories: [
+  taking notes
+  notes
+  journal
+]
+created: 2023-01-03
+updated: 2023-01-23
+version: 1.0.0
+@end
+
+* Daftar isi
+  - {:$/tentang_neorg:}[Tentang Neorg]
+  - {:$/graphql:}[Graphql]
+  - {:$/menulis_ulang_jwt:}[Menulis Ulang JWT]
