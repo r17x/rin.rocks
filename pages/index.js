@@ -21,7 +21,7 @@ import { NextSeo } from "next-seo";
 
 export const getStaticProps = () =>
   Promise.all([getAllPosts((a) => a.filter((b) => Boolean(b.date))), getSponsors("r17x")]).then(
-    ([posts, { data: sponsors }]) => ({ props: { posts, sponsors } }),
+    ([posts, { data: sponsors }]) => ({ props: { posts, sponsors: sponsors } }),
   );
 
 /** @typedef
@@ -143,9 +143,9 @@ const Home = ({
         px="5"
         py="10"
         spacing="7"
-        sponsors={sponsors?.user?.sponsors ?? []}
+        sponsors={sponsors?.user?.sponsors || []}
         textAlign="center"
-        total={sponsors.user.sponsorsCount}
+        total={sponsors?.user?.sponsorsCount}
       />
       <Flex alignItems="center" justifyContent="space-between" pb="2">
         <Heading as="h2">Recent Posts</Heading>

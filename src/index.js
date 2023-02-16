@@ -94,8 +94,8 @@ const findBySlug = (slug) => (arr) => arr.find((slug_) => slug_.match(slug));
 /** @type <A>(...fns: A[]) => <B>(x: B) => B */
 const compose =
   (...fns) =>
-  (x) =>
-    fns.reduce((g, f) => f(g), x);
+    (x) =>
+      fns.reduce((g, f) => f(g), x);
 
 const _getAllPosts = (...args) =>
   getContents("./content/posts/")
@@ -115,7 +115,10 @@ export const getBySlug = (slug) =>
       meta: jsonSerialize({ ...content.frontmatter, slug }),
     }));
 
-export const getSponsors = (username) =>
-  fetch(
-    `https://${process.env.PUBLIC_URL || process.env.NEXT_PUBLIC_VERCEL_URL}/api/sponsors?username=${username}`,
-  ).then((r) => r.json());
+export const getSponsors = (username) => {
+  const url =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : `https://${process.env.PUBLIC_URL || process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  return fetch(`${url}/api/sponsors?username=${username}`).then((r) => r.json());
+};

@@ -54,7 +54,7 @@ const mapSponsorsData = ({ data }) => ({
   user: {
     ...data.user,
     sponsorsCount: data.user.sponsors.totalCount,
-    sponsors: data.user.sponsors.nodes.filter(filterByHasSponsorListing).map(removeSponsorsField),
+    sponsors: data?.user?.sponsors?.nodes?.filter(filterByHasSponsorListing).map(removeSponsorsField),
   },
 });
 
@@ -62,12 +62,12 @@ export default function Sponsors(req) {
   return Promise.resolve(new URL(req.url))
     .then(({ searchParams }) => searchParams.get("username") || "")
     .then((username) =>
-      ({
-        [true]: () => username,
-        [username.length === 0]: () => {
-          throw new Error("username params is required!");
-        },
-      }.true()),
+    ({
+      [true]: () => username,
+      [username.length === 0]: () => {
+        throw new Error("username params is required!");
+      },
+    }.true()),
     )
     .then((login) =>
       getSponsors({
