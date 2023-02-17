@@ -21,7 +21,7 @@ import { NextSeo } from "next-seo";
 
 export const getStaticProps = () =>
   Promise.all([getAllPosts((a) => a.filter((b) => Boolean(b.date))), getSponsors("r17x")]).then(
-    ([posts, { data: sponsors }]) => ({ props: { posts, sponsors: sponsors } }),
+    ([posts, { data: sponsors }]) => ({ props: { posts, sponsors: sponsors || null } }),
   );
 
 /** @typedef
@@ -125,11 +125,7 @@ const Description = ({ socialLinks }) => (
 
 const Home = ({
   posts,
-  sponsors = {
-    user: {
-      sponsors: [],
-    },
-  },
+  sponsors
 }) => (
   <>
     <NextSeo title="r17x - if you know, you know" />

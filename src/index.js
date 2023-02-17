@@ -120,5 +120,5 @@ export const getSponsors = (username) => {
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : `https://${process.env.PUBLIC_URL || process.env.NEXT_PUBLIC_VERCEL_URL}`;
-  return fetch(`${url}/api/sponsors?username=${username}`).then((r) => r.json());
+  return fetch(`${url}/api/sponsors?username=${username}`).then((r) => r.json()).catch(_ => ({ data: null }));
 };
