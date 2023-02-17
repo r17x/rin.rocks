@@ -34,6 +34,8 @@ project.overrideAttrs
       nodejs
       yarn
       ack
+
+      vips # required by sharp
     ] ++ lib.optionals stdenv.isDarwin [
       xcbuild
     ];
