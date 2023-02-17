@@ -1,13 +1,13 @@
-self: super:
+final: prev:
 
 {
   # this overlay not correct as expected
-  ocamlPackages = super.ocaml-ng.ocamlPackages_5_0.overrideScope' (self: super: {
-    server-reason-react = super.callPackage ./server-reason-react.nix super.ocaml-ng.ocamlPackages_5_0;
-    ppx_pipe_first = super.callPackage ./ppx_pipe_first.nix;
+  ocamlPackages = prev.ocaml-ng.ocamlPackages_4_14.overrideScope' (final: prev: {
+    server-reason-react = prev.callPackage ./server-reason-react.nix prev.ocaml-ng.ocamlPackages_5_0;
+    ppx_pipe_first = prev.callPackage ./ppx_pipe_first.nix;
   });
 
-  rin_rocks = self.callPackage ../nix { inherit (self) nix-filter; };
-  nodejs = super.nodejs-16_x;
-  yarn = super.yarn.override { inherit (self) nodejs; };
+  rin_rocks = final.callPackage ../nix { inherit (final) nix-filter; };
+  nodejs = prev.nodejs-16_x;
+  yarn = prev.yarn.override { inherit (final) nodejs; };
 }
