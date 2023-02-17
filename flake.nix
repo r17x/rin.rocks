@@ -11,7 +11,7 @@
   #     $ nix flake lock --update-input <input> ... --commit-lockfile
   #
   inputs = {
-    nixpkgs.url = "github:nix-ocaml/nix-overlays";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # Convenience functions for writing flakes
     flake-utils.url = "github:numtide/flake-utils";
     # Precisely filter files copied to the nix store
@@ -25,17 +25,22 @@
   };
   outputs = { self, nixpkgs, ocaml-overlay, flake-utils, nix-filter }:
     # Construct an output set that supports a number of default systems
-    flake-utils.lib.eachDefaultSystem
+    {
+      overlays.default = import ./overlay;
+    } // flake-utils.lib.eachDefaultSystem
       (system:
         let
           # Legacy packages that have not been converted to flakes
-          pkgs = (ocaml-overlay.makePkgs {
-            inherit system;
-            extraOverlays = [ (import ./overlay) ];
-          });
+          overlays = [
+            nix-filter.overlays.default
+            ocaml-overlay.overlays.${system}
+            self.overlays.default
+          ];
+
+          pkgs = import nixpkgs { inherit system overlays; };
 
           # OCaml packages available on nixpkgs
-          ocamlPackages = pkgs.ocamlPackages;
+          # ocamlPackages = pkgs.ocamlPackages;
           # Library functions from nixpkgs
           lib = pkgs.lib;
           # Filtered sources (prevents unecessary rebuilds)
@@ -43,45 +48,15 @@
             let root = ./.;
             in
             {
-              nextjs = nix-filter.lib {
-                inherit root;
-                exclude = [
-                  "dune-project"
-                  "dune"
-                  "rin_rocks.ml"
-                  (nix-filter.lib.matchExt "nix")
-                ];
-              };
-              ocaml = nix-filter.lib {
-                inherit root;
-                include = [
-                  # ".ocamlformat"
-                  "dune-project"
-                  "dune"
-                  "rin_rocks.ml"
-                  # TODO include output from nextjs build & export
-                ];
-              };
-
-              nix = nix-filter.lib {
+              nix = pkgs.nix-filter {
                 root = ./.;
                 include = [
-                  (nix-filter.lib.matchExt "nix")
+                  (pkgs.nix-filter.matchExt "nix")
                 ];
               };
             };
           package = "rin_rocks";
           packageNextjs = "rin_rocks.nextjs";
-
-          run = pkg: "${pkgs.${pkg}}/bin/${pkg}";
-          run2 = pkg: bin: "${pkgs.${pkg}}/bin/${bin}";
-          scripts = with pkgs; [
-            (writeScriptBin "dev" ''
-              dune exec rin_rocks &
-              ${run "fswatch"} -o rin_rocks.ml -l 2 | xargs -L1 bash -c \
-                "killall rin_rocks || true; (dune exec rin_rocks || true) &"
-            '')
-          ];
         in
         {
           # Exposed packages that can be built or run with `nix build` or
@@ -95,83 +70,15 @@
           #     $ nix build
           #     $ nix run -- <args?>
           #
-          packages.default = self.packages.${system}.${package};
-          packages.${packageNextjs} =
-            let
-
-              project = pkgs.callPackage ./yarn-project.nix
-                {
-                  # Example of selecting a specific version of Node.js.
-                  nodejs = pkgs.nodejs-18_x;
-                }
-                {
-                  name = packageNextjs;
-                  # Example of providing a different source tree.
-                  src = sources.nextjs;
-                };
-
-            in
-            project.overrideAttrs
-              (oldAttrs: {
-
-                # Example of adding packages to the build environment.
-                # Especially dependencies with native modules may need a Python installation.
-                buildInputs = [
-                  pkgs.python3
-                  pkgs.nodejs-18_x
-                  (pkgs.yarn.override {
-                    nodejs = pkgs.nodejs-18_x;
-                  })
-                  pkgs.ack
-                ] ++ lib.optionals
-                  pkgs.stdenv.isDarwin [
-                  pkgs.xcbuild
-                ];
-
-                # Example of invoking a build step in your project.
-                buildPhase = ''
-                  yarn build
-                  yarn export
-                  mv ./out/_next ./out/next
-                  ack -l "_next" ./out/ | xargs sed -i "s/_next/next/g"
-                '';
-
-                installPhase = "cp -r ./out $out/";
-              });
-
-          packages.${package} = ocamlPackages.buildDunePackage {
-            pname = package;
-            version = "0.0.0";
-            duneVersion = "2";
-            minimalOCamlVersion = "4.12";
-            src = sources.ocaml;
-
-            strictDeps = true;
-            # propagatedBuildInputs = [ ocamlPackages.ppx_deriving ];
-            nativeBuildInputs = [
-              ocamlPackages.crunch
-            ];
-
-            buildInputs = [
-              ocamlPackages.dream
-              ocamlPackages.lwt_ppx
-              ocamlPackages.reason
-              ocamlPackages.server-reason-react
-              self.packages.${system}.${packageNextjs}
-            ];
-
-            preBuild = ''
-              ln -sf ${self.packages.${system}.${packageNextjs}} ./assets
-              dune build ${package}.opam
-            '';
-          };
-
+          # packages.default = self.packages.${system}.backend;
+          legacyPackages = pkgs.rin_rocks;
+          packages = flake-utils.lib.flattenTree pkgs.rin_rocks;
           # Flake checks
           #
           #     $ nix flake check
           #
           # Run tests for the `rin_rocks` package
-          checks.${package} =
+          checks.backend =
             let
               # Patches calls to dune commands to produce log-friendly output
               # when using `nix ... --print-build-log`. Ideally there would be
@@ -195,7 +102,7 @@
                   (lib.lists.map (subcmd: "dune ${subcmd} --display=short") subcmds);
             in
 
-            self.packages.${system}.${package}.overrideAttrs
+            self.packages.${system}.backend.overrideAttrs
               (oldAttrs: {
                 name = "check-${oldAttrs.name}";
                 doCheck = true;
@@ -261,7 +168,7 @@
           };
 
           # Development shells
-          #
+          #final
           #    $ nix develop .#<name>
           #    $ nix develop .#<name> --command dune build @test
           #
@@ -271,43 +178,6 @@
           #    $ echo "use flake" > .envrc && direnv allow
           #    $ dune build @test
           #
-          devShells = {
-            default = pkgs.mkShell {
-              # Development tools
-              nativeBuildInputs = [
-                pkgs.python3
-              ];
-
-              packages = scripts ++ [
-                # javascript
-                pkgs.nodejs-18_x
-                (pkgs.yarn.override {
-                  nodejs = pkgs.nodejs-18_x;
-                })
-
-                # Source file formatting
-                pkgs.nixpkgs-fmt
-                pkgs.dune_2
-                pkgs.ocamlPackages.merlin
-                pkgs.ocamlPackages.ocamlformat
-                # For `dune build --watch ...`
-                pkgs.fswatch
-                # For `dune build @doc`
-                # ocamlPackages.odoc
-                # OCaml editor support
-                # pkgs.ocamlPackages.ocaml-lsp-server
-                # Nicely formatted types on hover
-                # ocamlPackages.ocamlformat-rpc-lib
-                # Fancy REPL thing
-                # ocamlPackages.utop
-                self.packages.${system}.${package}
-              ];
-
-              # Tools from packages
-              inputsFrom = [
-                self.packages.${system}.${package}
-              ];
-            };
-          };
+          devShell = import ./devshell.nix { inherit pkgs; };
         });
 }
