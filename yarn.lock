@@ -1897,6 +1897,7 @@ __metadata:
 "@next/swc-linux-x64-gnu@npm:13.0.2":
   version: 13.0.2
   resolution: "@next/swc-linux-x64-gnu@npm:13.0.2"
+  checksum: dc53888d747178b6e25940abe97963d4072df141e1a004eb39e159c23a70db479e3b18246f11465feff7466c63e4746633dc1a8d41af521580304aff44c2e31e
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -2024,6 +2025,7 @@ __metadata:
     "@mdx-js/loader": ^2
     "@mdx-js/react": ^2
     "@next/mdx": ^12
+    "@next/swc-linux-x64-gnu": 13.0.2
     "@ri7nz/favicons-compiled": 0.0.5
     "@ri7nz/favicons-compiled-cli": 0.0.7
     "@vercel/analytics": ^0
