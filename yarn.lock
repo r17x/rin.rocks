@@ -320,6 +320,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@builder.io/partytown@npm:^0.7.1":
+  version: 0.7.5
+  resolution: "@builder.io/partytown@npm:0.7.5"
+  bin:
+    partytown: bin/partytown.cjs
+  checksum: 2b49a6eff5f1016f6b720d02c50d1ee05d91ba55ec2cd565f2b78ff16a06ef6aa1d51a5f66744d5358347e1d57ce02953d78be935e552585cd1c237a8f56c7d3
+  languageName: node
+  linkType: hard
+
 "@chakra-icons/bootstrap@npm:^1":
   version: 1.4.0
   resolution: "@chakra-icons/bootstrap@npm:1.4.0"
@@ -2016,6 +2025,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ri7nz/rocks@workspace:."
   dependencies:
+    "@builder.io/partytown": ^0.7.1
     "@chakra-icons/bootstrap": ^1
     "@chakra-ui/react": ^2
     "@code-hike/mdx": ^0
