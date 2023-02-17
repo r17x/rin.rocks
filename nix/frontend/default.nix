@@ -36,9 +36,12 @@ project.overrideAttrs
       ack
       nodePackages.node-gyp-build
       nodePackages.node-gyp
-      vips # required by sharp
     ] ++ lib.optionals stdenv.isDarwin [
       xcbuild
+    ] ++ lib.optionals stdenv.isLinux [
+      musl
+      glibc
+      vips # required by sharp
     ];
 
     PATCHES = [
