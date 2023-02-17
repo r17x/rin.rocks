@@ -6,6 +6,7 @@ let
     inherit nix-filter;
     backend = callPackage ./backend { };
     frontend = callPackage ./frontend { };
+    docker = callPackage ./docker { };
   };
 in
 packages
