@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, shellHook }:
 
 with pkgs;
 
@@ -14,6 +14,7 @@ let
 in
 
 mkShell {
+  inherit shellHook;
   # Development tools
   nativeBuildInputs = [
     python3
