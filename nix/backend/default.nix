@@ -35,8 +35,8 @@ ocamlPackages.buildDunePackage {
     # * remove this dev-dependencies when overlay is corrected
     # * uncommecnt server-reason-react when wanted use ReasonML
     # ocamlPackages.server-reason-react
-    ocamlformat
-    merlin
+    # ocamlformat
+    # merlin
   ];
 
   preBuild = ''
