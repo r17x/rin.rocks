@@ -29,7 +29,7 @@ project.overrideAttrs
 
     # Example of adding packages to the build environment.
     # Especially dependencies with native modules may need a Python installation.
-    nativeBuildInputs = [
+    nativeBuildInputs = oldAttrs.nativeBuildInputs or [ ] ++ [
       python3
       nodejs
       yarn
@@ -41,7 +41,10 @@ project.overrideAttrs
     ] ++ lib.optionals stdenv.isLinux [
       # musl
       # glibc
-      vips # required by sharp
+
+      # required by sharp
+      pkg-config
+      vips
     ];
 
     PATCHES = [
