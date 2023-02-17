@@ -38,6 +38,10 @@ project.overrideAttrs
       xcbuild
     ];
 
+    PATCHES = [
+      ../../patches/mdx-mermaid+1.3.2.patch
+    ];
+
     GH_GRAPHQL_URL = builtins.getEnv "GH_GRAPHQL_URL";
     GH_TOKEN = builtins.getEnv "GH_TOKEN";
     # Example of invoking a build step in your project.

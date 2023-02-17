@@ -10,6 +10,7 @@
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "patch-package",
     "format": "remark . --quiet --frail --output"
   },
   "remarkConfig": {
@@ -77,12 +78,11 @@
     "framer-motion": "^5",
     "globby": "^13",
     "hast-util-from-html": "^1.0.0",
-    "mdx-mermaid": "2.0.0-rc3",
+    "mdx-mermaid": "^1.3",
     "mermaid": "^9",
     "next": "^13",
     "next-mdx-remote": "^4",
     "next-seo": "^5",
-    "puppeteer": "^19.4.0",
     "ramda": "^0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -101,9 +101,11 @@
     "eslint-plugin-simple-import-sort": "^8",
     "eslint-plugin-unused-imports": "^2",
     "fetch.macro": "^1.9",
+    "patch-package": "^6.5.1",
     "remark-cli": "^10",
     "remark-lint": "^9",
-    "remark-preset-lint-recommended": "^6"
+    "remark-preset-lint-recommended": "^6",
+    "unist-util-visit": "^2"
   },
   "packageManager": "yarn@3.3.0"
 }
