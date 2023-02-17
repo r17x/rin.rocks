@@ -39,8 +39,8 @@ project.overrideAttrs
     ] ++ lib.optionals stdenv.isDarwin [
       xcbuild
     ] ++ lib.optionals stdenv.isLinux [
-      musl
-      glibc
+      # musl
+      # glibc
       vips # required by sharp
     ];
 
@@ -51,6 +51,19 @@ project.overrideAttrs
     GH_GRAPHQL_URL = builtins.getEnv "GH_GRAPHQL_URL";
     GH_TOKEN = builtins.getEnv "GH_TOKEN";
     # Example of invoking a build step in your project.
+    preConfigure =
+      lib.optionals stdenv.isLinux
+        (
+          let
+            sharp = fetchurl {
+              url = " https://github.com/lovell/sharp-libvips/releases/download/v8.13.3/libvips-8.13.3-linux-x64.tar.br";
+              sha256 = "sha256-s0GhgM092tspDE4a17kLj1mbJUrTSPY5CzxNZ2c7/Mk=";
+            };
+          in
+          ''
+            export sharp_libvips_local_prebuilds=${sharp.outPath}
+          ''
+        );
     buildPhase = ''
       yarn build
       yarn export
