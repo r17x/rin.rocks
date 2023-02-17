@@ -29,12 +29,13 @@ project.overrideAttrs
 
     # Example of adding packages to the build environment.
     # Especially dependencies with native modules may need a Python installation.
-    buildInputs = [
+    nativeBuildInputs = [
       python3
       nodejs
       yarn
       ack
-
+      nodePackages.node-gyp-build
+      nodePackages.node-gyp
       vips # required by sharp
     ] ++ lib.optionals stdenv.isDarwin [
       xcbuild
