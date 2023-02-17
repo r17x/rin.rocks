@@ -44,3 +44,61 @@ components/meta-tags.js
 .envrc
 
 # End of https://www.toptal.com/developers/gitignore/api/direnv
+# Created by https://www.toptal.com/developers/gitignore/api/ocaml
+# Edit at https://www.toptal.com/developers/gitignore?templates=ocaml
+
+### OCaml ###
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
+
+# ocamlbuild working directory
+_build/
+
+# ocamlbuild targets
+*.byte
+*.native
+
+# oasis generated files
+setup.data
+setup.log
+
+# Merlin configuring file for Vim and Emacs
+.merlin
+
+# Dune generated files
+*.install
+
+# Local OPAM switch
+_opam/
+
+# End of https://www.toptal.com/developers/gitignore/api/ocaml
+result
+# Created by https://www.toptal.com/developers/gitignore/api/yarn
+# Edit at https://www.toptal.com/developers/gitignore?templates=yarn
+
+### yarn ###
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+
+.yarn/*
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# if you are NOT using Zero-installs, then:
+# comment the following lines
+# !.yarn/cache
+
+# and uncomment the following lines
+# .pnp.*
+
+# End of https://www.toptal.com/developers/gitignore/api/yarn
+**/.pre-commit-config.yaml
