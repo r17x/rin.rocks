@@ -95,6 +95,7 @@
     "shiki": "^0"
   },
   "devDependencies": {
+    "@next/swc-darwin-x64": "13.0.2",
     "@next/swc-linux-x64-gnu": "13.0.2",
     "babel-plugin-macros": "^2",
     "eslint-config-kentcdodds": "^20",

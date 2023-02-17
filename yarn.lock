@@ -1862,6 +1862,7 @@ __metadata:
 "@next/swc-darwin-x64@npm:13.0.2":
   version: 13.0.2
   resolution: "@next/swc-darwin-x64@npm:13.0.2"
+  checksum: eb703ed5680d386a9aa893a7e0d1cf0195e4b7032760b13776e2bf0d30c50b1418500fceab14d0843e743201adeb578b8ffa4baecb8ac316dc5791e2fd694a88
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -2025,6 +2026,7 @@ __metadata:
     "@mdx-js/loader": ^2
     "@mdx-js/react": ^2
     "@next/mdx": ^12
+    "@next/swc-darwin-x64": 13.0.2
     "@next/swc-linux-x64-gnu": 13.0.2
     "@ri7nz/favicons-compiled": 0.0.5
     "@ri7nz/favicons-compiled-cli": 0.0.7
