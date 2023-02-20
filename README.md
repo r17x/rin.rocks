@@ -57,6 +57,11 @@ You don't technically need to run or setup anything on your end (except [Nix](ht
 
 #### run Frontend
 ```bash
+nix develop . -c yarn install && yarn dev
+```
+**OR**
+```bash
+nix develop 
 yarn install && yarn dev
 ```
 
