@@ -50,6 +50,16 @@
         ];
 
         pkgs = import nixpkgs { inherit system overlays; };
+
+        precommit = {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+            actionlint.enable = true;
+            mdsh.enable = true;
+            dune-opam-sync.enable = true;
+          };
+        };
       in
       {
         # Exposed packages that can be built or run with `nix build` or
@@ -70,15 +80,7 @@
         #
         #     $ nix flake check
         checks = {
-          pre-commit-check = nix-precommit.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              nixpkgs-fmt.enable = true;
-              actionlint.enable = true;
-              mdsh.enable = true;
-              dune-opam-sync.enable = true;
-            };
-          };
+          pre-commit-check = nix-precommit.lib.${system}.run precommit;
         };
         # Development shells
         #    $ nix develop .
@@ -90,6 +92,9 @@
         #    $ echo "use flake" > .envrc && direnv allow
         #    $ dune build @test
         #
-        devShells.default = import ./devshell.nix { inherit pkgs; inherit (self.checks.${system}.pre-commit-check) shellHook; };
+        devShells.default = import ./devshell.nix {
+          inherit pkgs;
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+        };
       });
 }
