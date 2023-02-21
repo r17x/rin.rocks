@@ -3,16 +3,16 @@
 with pkgs;
 
 let
-  project = callPackage ../../nix/yarn-project.nix { } {
+  project = callPackage ./yarn-project.nix { } {
     # Example of providing a different source tree.
     src = nix-filter {
-      root = ../../apps/frontend;
+      root = ./.;
       # include = [
       #   "apps/frontend"
       # ];
-      # exclude = [
-      #   (nix-filter.matchExt "nix")
-      # ];
+      exclude = [
+        (nix-filter.matchExt "nix")
+      ];
     };
   };
 
@@ -33,16 +33,13 @@ project.overrideAttrs
     ] ++ lib.optionals stdenv.isDarwin [
       xcbuild
     ] ++ lib.optionals stdenv.isLinux [
-      # musl
-      # glibc
-
       # required by sharp
       pkg-config
       vips
     ];
 
     PATCHES = [
-      ../../apps/frontend/patches/mdx-mermaid+1.3.2.patch
+      ./patches/mdx-mermaid+1.3.2.patch
     ];
 
     GH_GRAPHQL_URL = builtins.getEnv "GH_GRAPHQL_URL";

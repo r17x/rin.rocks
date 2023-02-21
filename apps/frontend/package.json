@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "favicons-compiled -i public/r17x.png -o public/assets --config favicons.config.json --html public/meta-tags.html --jsx components/meta-tags.js",
     "build": "next build",
     "preexport": "yarn build",
     "export": "next export",

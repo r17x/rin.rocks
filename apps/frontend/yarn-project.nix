@@ -7,7 +7,7 @@
 let
 
   cacheFolder = ".yarn/cache";
-  lockfile = ./../apps/frontend/yarn.lock;
+  lockfile = ./yarn.lock;
 
   # Call overrideAttrs on a derivation if a function is provided.
   optionalOverride = fn: drv:
@@ -15,7 +15,7 @@ let
 
   # Simple stub that provides the global yarn command.
   yarn = writeShellScriptBin "yarn" ''
-    exec '${nodejs}/bin/node' '${./../apps/frontend/.yarn/releases/yarn-3.3.0.cjs}' "$@"
+    exec '${nodejs}/bin/node' '${./.yarn/releases/yarn-3.3.0.cjs}' "$@"
   '';
 
   # Common attributes between Yarn derivations.
