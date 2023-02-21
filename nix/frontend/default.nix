@@ -3,29 +3,23 @@
 with pkgs;
 
 let
-  project = callPackage ../../nix/yarn-project.nix
-    {
-      # Example of selecting a specific version of Node.js.
-      # nodejs = pkgs.nodejs-18_x;
-      inherit nodejs;
-    }
-    {
-      name = "rin_rocks_frontend";
-      # Example of providing a different source tree.
-      src = nix-filter {
-        root = ../../.;
-        exclude = [
-          "dune-project"
-          "dune"
-          "rin_rocks.ml"
-          (nix-filter.matchExt "nix")
-        ];
-      };
+  project = callPackage ../../nix/yarn-project.nix { } {
+    # Example of providing a different source tree.
+    src = nix-filter {
+      root = ../../apps/frontend;
+      # include = [
+      #   "apps/frontend"
+      # ];
+      # exclude = [
+      #   (nix-filter.matchExt "nix")
+      # ];
     };
+  };
 
 in
 project.overrideAttrs
   (oldAttrs: {
+    name = "rin_rocks_frontend";
 
     # Example of adding packages to the build environment.
     # Especially dependencies with native modules may need a Python installation.
@@ -48,7 +42,7 @@ project.overrideAttrs
     ];
 
     PATCHES = [
-      ../../patches/mdx-mermaid+1.3.2.patch
+      ../../apps/frontend/patches/mdx-mermaid+1.3.2.patch
     ];
 
     GH_GRAPHQL_URL = builtins.getEnv "GH_GRAPHQL_URL";
@@ -67,6 +61,7 @@ project.overrideAttrs
             export sharp_libvips_local_prebuilds=${sharp.outPath}
           ''
         );
+
     buildPhase = ''
       yarn build
       yarn export

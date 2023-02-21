@@ -2013,63 +2013,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ri7nz/rocks@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@ri7nz/rocks@workspace:."
-  dependencies:
-    "@chakra-icons/bootstrap": ^1
-    "@chakra-ui/react": ^2
-    "@code-hike/mdx": ^0
-    "@emotion/react": ^11
-    "@emotion/styled": ^11
-    "@giscus/react": ^2.2.0
-    "@mdx-js/loader": ^2
-    "@mdx-js/react": ^2
-    "@next/mdx": ^12
-    "@next/swc-darwin-x64": 13.0.2
-    "@next/swc-linux-x64-gnu": 13.0.2
-    "@ri7nz/favicons-compiled": 0.0.5
-    "@ri7nz/favicons-compiled-cli": 0.0.7
-    "@vercel/analytics": ^0
-    "@vercel/og": ^0.0.20
-    babel-plugin-macros: ^2
-    eslint: ^8
-    eslint-config-kentcdodds: ^20
-    eslint-config-next: ^13
-    eslint-plugin-mdx: ^1
-    eslint-plugin-simple-import-sort: ^8
-    eslint-plugin-unused-imports: ^2
-    fetch.macro: ^1.9
-    framer-motion: ^5
-    globby: ^13
-    hast-util-from-html: ^1.0.0
-    mdx-mermaid: ^1.3
-    mermaid: ^9
-    next: ^13
-    next-mdx-remote: ^4
-    next-seo: ^5
-    patch-package: ^6.5.1
-    ramda: ^0
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    rehype-stringify: ^9
-    remark-cli: ^10
-    remark-frontmatter: ^4
-    remark-gfm: ^3
-    remark-github: ^11
-    remark-lint: ^9
-    remark-mdx-images: ^1
-    remark-preset-lint-recommended: ^6
-    remark-reading-time: ^2
-    shiki: ^0
-    unist-util-visit: ^2
-    webpack: "*"
-  dependenciesMeta:
-    webpack:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
 "@rushstack/eslint-patch@npm:^1.1.3, @rushstack/eslint-patch@npm:^1.1.4":
   version: 1.2.0
   resolution: "@rushstack/eslint-patch@npm:1.2.0"
@@ -9458,6 +9401,63 @@ __metadata:
   checksum: 87f4164e396f0171b0a3386cc1877a817f572148ee13a7e113b238e48e8a9f2f31d009a92ec38a591ff1567d9662c6b67fd8818a2dbbaed74bc26a87a2a4a9a0
   languageName: node
   linkType: hard
+
+"rin_rocks@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "rin_rocks@workspace:."
+  dependencies:
+    "@chakra-icons/bootstrap": ^1
+    "@chakra-ui/react": ^2
+    "@code-hike/mdx": ^0
+    "@emotion/react": ^11
+    "@emotion/styled": ^11
+    "@giscus/react": ^2.2.0
+    "@mdx-js/loader": ^2
+    "@mdx-js/react": ^2
+    "@next/mdx": ^12
+    "@next/swc-darwin-x64": 13.0.2
+    "@next/swc-linux-x64-gnu": 13.0.2
+    "@ri7nz/favicons-compiled": 0.0.5
+    "@ri7nz/favicons-compiled-cli": 0.0.7
+    "@vercel/analytics": ^0
+    "@vercel/og": ^0.0.20
+    babel-plugin-macros: ^2
+    eslint: ^8
+    eslint-config-kentcdodds: ^20
+    eslint-config-next: ^13
+    eslint-plugin-mdx: ^1
+    eslint-plugin-simple-import-sort: ^8
+    eslint-plugin-unused-imports: ^2
+    fetch.macro: ^1.9
+    framer-motion: ^5
+    globby: ^13
+    hast-util-from-html: ^1.0.0
+    mdx-mermaid: ^1.3
+    mermaid: ^9
+    next: ^13
+    next-mdx-remote: ^4
+    next-seo: ^5
+    patch-package: ^6.5.1
+    ramda: ^0
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    rehype-stringify: ^9
+    remark-cli: ^10
+    remark-frontmatter: ^4
+    remark-gfm: ^3
+    remark-github: ^11
+    remark-lint: ^9
+    remark-mdx-images: ^1
+    remark-preset-lint-recommended: ^6
+    remark-reading-time: ^2
+    shiki: ^0
+    unist-util-visit: ^2
+    webpack: "*"
+  dependenciesMeta:
+    webpack:
+      optional: true
+  languageName: unknown
+  linkType: soft
 
 "robust-predicates@npm:^3.0.0":
   version: 3.0.1
