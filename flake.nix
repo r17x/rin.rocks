@@ -92,7 +92,7 @@
         #    $ echo "use flake" > .envrc && direnv allow
         #    $ dune build @test
         #
-        devShells.default = import ./devshell.nix {
+        devShells = import ./nix/devshell.nix {
           inherit pkgs;
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
