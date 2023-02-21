@@ -1,10 +1,10 @@
 ---
 title: HeLL0 w0Rld ¯\_(ツ)_/¯ DCLXVI
-date: 2020-06-25 
+date: 2020-06-25
 updateAt: 2022-06-17
 tags:
-    - vim
-    - tools
+  - vim
+  - tools
 ---
 
 HeLL0 s0bat, selamat datang di-`blog|website|apalah` yang mungkin berguna untuk
@@ -34,9 +34,9 @@ berkenan, lihat disini [DOTIFILES](https://github.com/ri7nz/.dotifiles).
 Sebenarnya, bukan [YADM](https://yadm.io/) yang membuat saya termotivasi, yang
 membuat saya termotivasi adalah 3 plugin pada `Vim`, yakni:
 
-*   [x] [Goyo](https://github.com/junegunn/goyo.vim)
-*   [x] [Lightlime](https://github.com/junegunn/limelight.vim)
-*   [x] [fzf-notational-vim](https://github.com/alok/notational-fzf-vim)
+- [x] [Goyo](https://github.com/junegunn/goyo.vim)
+- [x] [Lightlime](https://github.com/junegunn/limelight.vim)
+- [x] [fzf-notational-vim](https://github.com/alok/notational-fzf-vim)
 
 ![Powered by VIM](./powered-by-vim.gif)
 

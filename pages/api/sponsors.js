@@ -62,12 +62,12 @@ export default function Sponsors(req) {
   return Promise.resolve(new URL(req.url))
     .then(({ searchParams }) => searchParams.get("username") || "")
     .then((username) =>
-    ({
-      [true]: () => username,
-      [username.length === 0]: () => {
-        throw new Error("username params is required!");
-      },
-    }.true()),
+      ({
+        [true]: () => username,
+        [username.length === 0]: () => {
+          throw new Error("username params is required!");
+        },
+      }.true()),
     )
     .then((login) =>
       getSponsors({

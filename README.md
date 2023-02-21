@@ -33,18 +33,21 @@ graph LR
 ### Tech Stack
 
 #### Frontend
-  * [NextJs](https://nextjs.org/) _**The React Framework for the Web**_ by [Vercel](https://vercel.com/).
-  * [Chakra-UI](https://chakra-ui.com/) _**a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.**_.
-  
+
+- [NextJs](https://nextjs.org/) _**The React Framework for the Web**_ by [Vercel](https://vercel.com/).
+- [Chakra-UI](https://chakra-ui.com/) _**a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.**_.
+
 #### Backend
-  * [Dream](https://aantron.github.io/dream/) _**Tidy Web framework for OCaml and ReasonML**_ by @aantron.
-  * [ocaml-crunch](https://github.com/mirage/ocaml-crunch) _**Convert a filesystem into a static OCaml module**_ by @mirage.
+
+- [Dream](https://aantron.github.io/dream/) _**Tidy Web framework for OCaml and ReasonML**_ by @aantron.
+- [ocaml-crunch](https://github.com/mirage/ocaml-crunch) _**Convert a filesystem into a static OCaml module**_ by @mirage.
 
 #### Tools
-  * [Yarn@v3](https://yarnpkg.com/) _**Yarn is a package manager that doubles down as project manager. Whether you work on one-shot projects or large monorepos, as a hobbyist or an enterprise user, we've got you covered.**_
-  * [Nodejs](https://nodejs.org/en/) _**Node.js® is an open-source, cross-platform JavaScript runtime environment.**_
-  * [OCaml](https://ocaml.org/) _**General-Purpose, Industrial-Strength, Expressive, and Safe.**_
-  
+
+- [Yarn@v3](https://yarnpkg.com/) _**Yarn is a package manager that doubles down as project manager. Whether you work on one-shot projects or large monorepos, as a hobbyist or an enterprise user, we've got you covered.**_
+- [Nodejs](https://nodejs.org/en/) _**Node.js® is an open-source, cross-platform JavaScript runtime environment.**_
+- [OCaml](https://ocaml.org/) _**General-Purpose, Industrial-Strength, Expressive, and Safe.**_
+
 ## Development
 
 ### Prerequisites
@@ -56,16 +59,20 @@ You don't technically need to run or setup anything on your end (except [Nix](ht
 > Most of the commands run in the root project directory.
 
 #### run Frontend
+
 ```bash
 nix develop . -c yarn install && yarn dev
 ```
+
 **OR**
+
 ```bash
-nix develop 
+nix develop
 yarn install && yarn dev
 ```
 
 #### run Backend
+
 ```bash
 nix run .#backend
 ```
@@ -73,28 +80,32 @@ nix run .#backend
 #### run nix-shell
 
 Available shell options:
-* default with all tools from frontend and backend.
+
+- default with all tools from frontend and backend.
+
 ```
-nix develop 
+nix develop
 ```
 
-* frontend with yarn, node, and related nodejs ecosystem tools.
+- frontend with yarn, node, and related nodejs ecosystem tools.
+
 ```
 nix develop .#frontend
 ```
 
-* backend with fswatch and ocaml ecosystem tools.
+- backend with fswatch and ocaml ecosystem tools.
+
 ```
 nix develop .#backend
 ```
 
 See [**Detail Here**](./nix/devshell.nix#L41-L75).
 
-## Deployment 
+## Deployment
 
-* Currently using [Vercel: rin_rocks](https://vercel.com/ri7nz/rin-rocks).
-* For single static binary read this github actions [workflow](.github/workflows/ci.yml).
+- Currently using [Vercel: rin_rocks](https://vercel.com/ri7nz/rin-rocks).
+- For single static binary read this github actions [workflow](.github/workflows/ci.yml).
 
 # Acknowledgement
 
-* @Xe - [https://xeiaso.net](https://github.com/Xe/site) for talk about _**"My Blog is Hilariously Overengineered to the Point People Think it's a Static Site"**_ at [GambiConf](https://gambiconf.dev/).
+- @Xe - [https://xeiaso.net](https://github.com/Xe/site) for talk about _**"My Blog is Hilariously Overengineered to the Point People Think it's a Static Site"**_ at [GambiConf](https://gambiconf.dev/).
