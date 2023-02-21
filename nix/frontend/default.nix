@@ -3,7 +3,7 @@
 with pkgs;
 
 let
-  project = callPackage ../../yarn-project.nix
+  project = callPackage ../../nix/yarn-project.nix
     {
       # Example of selecting a specific version of Node.js.
       # nodejs = pkgs.nodejs-18_x;
