@@ -70,6 +70,26 @@ yarn install && yarn dev
 nix run .#backend
 ```
 
+#### run nix-shell
+
+Available shell options:
+* default with all tools from frontend and backend.
+```
+nix develop 
+```
+
+* frontend with yarn, node, and related nodejs ecosystem tools.
+```
+nix develop .#frontend
+```
+
+* backend with fswatch and ocaml ecosystem tools.
+```
+nix develop .#backend
+```
+
+See [**Detail Here**](./nix/devshell.nix#L41-L75).
+
 ## Deployment 
 
 * Currently using [Vercel: rin_rocks](https://vercel.com/ri7nz/rin-rocks).
