@@ -4,9 +4,9 @@ let
   callPackage = lib.callPackageWith (pkgs // packages);
   packages = {
     inherit nix-filter;
-    backend = callPackage ./backend { };
-    frontend = callPackage ./frontend { };
-    docker = callPackage ./docker { };
+    backend = callPackage ../apps/backend { };
+    docker = callPackage ../apps/backend/docker.nix { };
+    frontend = callPackage ../apps/frontend { };
   };
 in
 packages
