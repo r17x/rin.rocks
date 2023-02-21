@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
 jobs:
-  tests:
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
@@ -22,7 +22,7 @@ jobs:
           # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           extraPullNames: pre-commit-hooks,nix-community
-          skipPush: github.event_name == 'pull_request'
+          skipPush: ${{ !(github.ref == 'refs/heads/main' && github.event_name == 'push') }}
       - run: nix flake show
       - run: nix flake check
       - run: nix build .#frontend
