@@ -36,7 +36,7 @@ import { useRouter } from "next/router";
 const withChildren =
   (Component, props) =>
   // eslint-disable-next-line
-  ({ children, ...props_}) =>
+  ({ children, ...props_ }) =>
     (
       <Component {...props_} {...props}>
         {children}
@@ -60,7 +60,7 @@ const components = {
   ul: withChildren(UnorderedList, { pl: 6 }),
   ol: withChildren(OrderedList, { pl: 6 }),
   li: withChildren(ListItem, { pb: 1 }),
-// eslint-disable-next-line
+  // eslint-disable-next-line
   blockquote: ({ children, ...props }) => (
     <Box
       as="blockquote"

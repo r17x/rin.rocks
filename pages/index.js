@@ -123,10 +123,7 @@ const Description = ({ socialLinks }) => (
   </VStack>
 );
 
-const Home = ({
-  posts,
-  sponsors
-}) => (
+const Home = ({ posts, sponsors }) => (
   <>
     <NextSeo title="r17x - if you know, you know" />
     <Stack shouldWrapChildren>

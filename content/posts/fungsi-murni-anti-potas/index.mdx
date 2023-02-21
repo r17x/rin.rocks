@@ -3,8 +3,8 @@ title: Pure Function
 date: 2021-04-28
 updateAt: 2022-06-17
 tags:
-    - JavaScript
-    - Functional Programming
+  - JavaScript
+  - Functional Programming
 ---
 
 > Apa salahnya kujual Miras\
@@ -13,13 +13,13 @@ tags:
 
 Membaca potongan lirik diatas, pembaca akan berfikir bahwa pedangang Miras tersebut menjual minuman yang MURNI tanpa campuran atau bahan pengawet yang dapat memberikan efek samping kepada konsumen, peminum, atau "pelanggan" . Padahal se-MURNI-nya minuman tersebut, tetap saja memberikan efek samping yakni mabuk jika banyak, kalau sedikit kayaknya nggak deh! 👀.
 
-Okay, kembali kejalan yang benar. Pada tulisan ini saya ingin memberikan sebuah cerita tentang pemrograman fungsional atau *Functional Programming*. Dalam pemrograman fungsional kita akan familiar dengan istilah *Pure Function* atau fungsi murni (saking murninya tanpa potas loh).
+Okay, kembali kejalan yang benar. Pada tulisan ini saya ingin memberikan sebuah cerita tentang pemrograman fungsional atau _Functional Programming_. Dalam pemrograman fungsional kita akan familiar dengan istilah _Pure Function_ atau fungsi murni (saking murninya tanpa potas loh).
 
-> *Pure Function* merupakan sebuah fungsi yang tidak memiliki efek samping. Dengan kata lain, masukan dan keluaran (*input/output*) dari fungsi tersebut selalu sama.
+> _Pure Function_ merupakan sebuah fungsi yang tidak memiliki efek samping. Dengan kata lain, masukan dan keluaran (_input/output_) dari fungsi tersebut selalu sama.
 
 Apakah pembaca memahami pernyataan diatas? jika belum, yah lanjut saja bacanya 🙌.
 
-Kunci utama yang perlu kita "pegang" dalam pernyataan diatas ialah *input* dan *output* sebuah fungsi selalu sama.
+Kunci utama yang perlu kita "pegang" dalam pernyataan diatas ialah _input_ dan _output_ sebuah fungsi selalu sama.
 
 <CH.Scrollycoding>
 
@@ -32,45 +32,44 @@ Misalnya, kita memulai dengan membuat sebuah fungsi yang murni, fungsi tersebut 
  * @param {Number} b
  * @return {Number} a + b
  */
-const add = (a, b) => a + b
+const add = (a, b) => a + b;
 
 /**
  * @pure addTwo
  * @param {number} n
  * @return {number} + 2
  */
-const addTwo = (n) => add(n, 2)
+const addTwo = (n) => add(n, 2);
 ```
 
-Dari definisi fungsi `add` tersebut ketika parameter `a` digantikan dengan `2` dan parameter `b` digantikan dengan `3` maka hasilnya `5`. selama `a` dan `b` diberikan nilai yang sesuai (*termasuk tipe data yang sudah kita definisikan pada komentar diatas fungsi*). Maka, kita selalu mendapatkan hasil yang sama, apapun keadaan program kita ketika fungsi ini dipanggil yah akan selalu menghasilkan yang sama.
+Dari definisi fungsi `add` tersebut ketika parameter `a` digantikan dengan `2` dan parameter `b` digantikan dengan `3` maka hasilnya `5`. selama `a` dan `b` diberikan nilai yang sesuai (_termasuk tipe data yang sudah kita definisikan pada komentar diatas fungsi_). Maka, kita selalu mendapatkan hasil yang sama, apapun keadaan program kita ketika fungsi ini dipanggil yah akan selalu menghasilkan yang sama.
 
 ---
 
-Karena fungsi `add` tersebut telah kalian pahami dan fungsi tersebut adalah fungsi yang murni, maka kita mencoba mendefinisikan fungsi yang baru dengan spesifikasi yang hampir sama (*yah hanya salah satu paramater yang kita tetapkan nilainya*).
+Karena fungsi `add` tersebut telah kalian pahami dan fungsi tersebut adalah fungsi yang murni, maka kita mencoba mendefinisikan fungsi yang baru dengan spesifikasi yang hampir sama (_yah hanya salah satu paramater yang kita tetapkan nilainya_).
 
 ```js pure.js focus=9:13
+
 ```
 
-----
+---
 
 Misalnya, kita membuat sebuah fungsi menambahkan nilai `{N}` dengan 2, sehingga potongan kodenya seperti ini:
 
 ```js pure.js focus=14
+
 ```
 
-Difungsi ini kita menggunakan fungsi yang sudah kita buat sebelumnya (**Reusable** *dari* `add`).
+Difungsi ini kita menggunakan fungsi yang sudah kita buat sebelumnya (**Reusable** _dari_ `add`).
 
 Dari kode tersebut, kita sudah tahu jika `{N}` bernilai 2 maka kembaliannya adalah ~~3~~ 4. (Yailah, kodenya pendek begitu, apapun yang terjadi yah N akan selalu ditambah dengan 2). Nah, sesederhana itu.
 
-
-
 Dari fungsi `addTwo` kita belajar:
 
-*   merupakan definisi dan nama fungsinya
-*   paramater `{N}` harus bertipe data {Number} (Javascript type-data)
-*   paramater `{N}` HARUS di-operasikan dengan {2}
-*   Kembalian dari fungsi tersebut HARUS {Number}
-
+- merupakan definisi dan nama fungsinya
+- paramater `{N}` harus bertipe data {Number} (Javascript type-data)
+- paramater `{N}` HARUS di-operasikan dengan {2}
+- Kembalian dari fungsi tersebut HARUS {Number}
 
 </CH.Scrollycoding>
 
@@ -80,4 +79,4 @@ Jika tidak, kamu boleh bertanya, memberikan kritik, atau apapun (terserah kamu) 
 
 ## Referensi
 
-*   [wikipedia: Pure Function](https://en.wikipedia.org/wiki/Pure_function)
+- [wikipedia: Pure Function](https://en.wikipedia.org/wiki/Pure_function)

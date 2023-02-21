@@ -1,10 +1,10 @@
 ---
 title: Konfigurasi VIM - part 1
 date: 2020-06-28
-updatedAt: 2022-06-17 
+updatedAt: 2022-06-17
 tags:
-    - vim
-    - toos
+  - vim
+  - toos
 ---
 
 ![Banner](./sample-linux.png)
@@ -24,14 +24,14 @@ Okay, kita lupakan masa lalu karena `hidup terus mengalir` bagai `air` 🌊.
 ## Vim8
 
 [Vim](Vim) yang saya gunakan saat ini adalah `Vi IMproved 8` bukan `nvim` seperti
-kawan saya [@faultable](https://faultable.dev) yang `hipster`.  alasan pribadi
+kawan saya [@faultable](https://faultable.dev) yang `hipster`. alasan pribadi
 karena ~~senang aja dengan `kemurnian`~~ kebutuhan saya sudah terpenuhi dan
 belum punya alasan untuk menggunakan `nvim` (neo-vim)
 
 Menggunakan Vim tangan kosong (tanpa plugin) sangat menarik untuk kamu yang mau
 belajar soal `essential` atau dasar - dasar dari vim. Untuk apa ? untuk
 mengetahui bagaimana `vim` bekerja, contoh `vim` memiliki berkas konfigurasi
-yang umumnya disimpan pada `path` `$HOME/.vimrc` atau `~/.vimrc`.  `.vimrc`
+yang umumnya disimpan pada `path` `$HOME/.vimrc` atau `~/.vimrc`. `.vimrc`
 merupakan berkas untuk mengelola atau mengatur `vim` ketika kita gunakan
 (`runtime`).
 
@@ -50,24 +50,23 @@ bantuan `plugin manager` yang bisa kamu dapatkan didunia ini.
 `vim-plug` merupakan `plugin manager`, mengapa membutuhkan ? Jadi, dengan menggunakan `manager` kita dapat mengurangi hal - hal, seperti ini:
 
 ```markdown
-
 1. ambil berkas konfigurasi
 2. ubah berkas konfigurasi `.vimrc`
 3. terapkan dan gunakan
 
 (start)
-   |
-   V
+|
+V
 download configuration file
-   |
-   V
+|
+V
 save to my local storage
-   |
-   V
-apply in my vimrc 
-   |
-   V
- (end)
+|
+V
+apply in my vimrc
+|
+V
+(end)
 ```
 
 menggantikan hal tersebut dengan hanya menambahkan 1 baris kode pada `.vimrc` kamu, seperti ini:
@@ -86,25 +85,25 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 " Plugin List
-" example: 
+" example:
 " Plug 'username/plugin_name'
 call plug#end()
 ```
 
-*   Baris 1: jika `'~/.vim/autoload/plug.vim'` tidak ada maka
+- Baris 1: jika `'~/.vim/autoload/plug.vim'` tidak ada maka
 
-*   Baris 2: mengunduh sebuah berkas `vim-plug` yang disimpan pada `github repository`
+- Baris 2: mengunduh sebuah berkas `vim-plug` yang disimpan pada `github repository`
 
-*   Baris 4: otomatis menjalankan perintah `Plugin --sync` dan `source $MYVIMRC` membaca konfigurasi `.vimrc`, ketika (`VimEnter`: `startup` atau dibuka melalui terminal)
+- Baris 4: otomatis menjalankan perintah `Plugin --sync` dan `source $MYVIMRC` membaca konfigurasi `.vimrc`, ketika (`VimEnter`: `startup` atau dibuka melalui terminal)
 
-*   Baris 5-9: tempat dimana kamu menuliskan `plugin` yang kamu gunakan
+- Baris 5-9: tempat dimana kamu menuliskan `plugin` yang kamu gunakan
 
 Okay, mari kita lanjut ke `unboxing` vim `saya`.
 Untuk awal, saya akan mencoba membagi dalam beberapa bagian, seperti:
 
-*   Interface (Theme, Style, Layout)
-*   Language
-*   Etc
+- Interface (Theme, Style, Layout)
+- Language
+- Etc
 
 ## Interface (Theme, Style, Layout)
 
@@ -120,8 +119,8 @@ Untuk persoalan `antarmuka` atau `interface` atau jenis pekerjaanya para `fronte
 
 Hal - hal yang saya sukai:
 
-*   menambahkan bookmark agar dapat berpindah - pindah dari project x ke y atau kemanapun yang saya mau
-*   dapat mengetahui berkas mana yang telah dimodifikasi atau ditambahkan jika sedang aktif pada `git directory`
+- menambahkan bookmark agar dapat berpindah - pindah dari project x ke y atau kemanapun yang saya mau
+- dapat mengetahui berkas mana yang telah dimodifikasi atau ditambahkan jika sedang aktif pada `git directory`
 
 ## edge - `sainnhe/edge`
 
@@ -130,8 +129,8 @@ Hal menarik dari `plugin` ini adalah:
 
 ![edge](./sainhe-edge.png)
 
-*   memiliki `variant` \[edge dark (aura), edge dark (neon),  edge light].
-*   mendukung untuk `ligtline` dan `airline`.
-*   1 theme yang dapat di terapkan ke `alacritty`, `zsh`, `kitty`, `termite`, dan `fzf`.
+- memiliki `variant` \[edge dark (aura), edge dark (neon), edge light].
+- mendukung untuk `ligtline` dan `airline`.
+- 1 theme yang dapat di terapkan ke `alacritty`, `zsh`, `kitty`, `termite`, dan `fzf`.
 
 > BESOK, dilanjut

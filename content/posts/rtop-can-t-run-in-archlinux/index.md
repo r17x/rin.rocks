@@ -1,7 +1,7 @@
 ---
 title: How to fix rtop in Archlinux
-date: 
-updatedAt: 
+date:
+updatedAt:
 tags:
   - linux
 ---
