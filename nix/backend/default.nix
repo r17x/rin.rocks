@@ -15,8 +15,7 @@ ocamlPackages.buildDunePackage {
     include = [
       # ".ocamlformat"
       "dune-project"
-      "dune"
-      "rin_rocks.ml"
+      "apps/backend"
     ];
 
   };
@@ -40,7 +39,7 @@ ocamlPackages.buildDunePackage {
   ];
 
   preBuild = ''
-    ln -sf ${frontend} ./assets
+    ln -sf ${frontend} ./apps/backend/assets
     dune build rin_rocks.opam
   '';
 
