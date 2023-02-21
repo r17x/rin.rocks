@@ -54,6 +54,8 @@
         precommit = {
           src = ./.;
           hooks = {
+            prettier.enable = true;
+            prettier.excludes = [ ".yarn/plugins/.*\.cjs" ];
             nixpkgs-fmt.enable = true;
             actionlint.enable = true;
             mdsh.enable = true;

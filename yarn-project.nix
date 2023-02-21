@@ -7,6 +7,7 @@
 let
 
   cacheFolder = ".yarn/cache";
+  lockfile = ./yarn.lock;
 
   # Call overrideAttrs on a derivation if a function is provided.
   optionalOverride = fn: drv:
@@ -113,29 +114,36 @@ let
     installPhase = ''
       runHook preInstall
 
-      mkdir -p "$out/libexec/$name" "$out/bin"
-
       # Move the package contents to the output directory.
-      # - If the package.json has a `files` field, only files matching those patterns are copied
-      # - Otherwise all files are copied
-      yarn pack --out package.tgz
-      tar xzvf package.tgz --directory "$out/libexec/$name" --strip-components=1
-
-      cp .yarnrc* 'yarn.lock' "$out/libexec/$name"
-      cp --recursive .yarn "$out/libexec/$name"
-
-      # If the project uses the node-modules linker, then
-      # include the node_modules folder in the package.
-      if [ -d node_modules ]; then
-        cp --recursive node_modules "$out/libexec/$name"
+      if grep -q '"workspaces"' package.json; then
+        # We can't use `yarn pack` in a workspace setup, because it only
+        # packages the outer workspace.
+        mkdir -p "$out/libexec"
+        mv $PWD "$out/libexec/$name"
       else
-        # Otherwise, assume PnP. Copy the loader into the package.
-        cp .pnp.* "$out/libexec/$name"
+        # - If the package.json has a `files` field, only files matching those patterns are copied
+        # - Otherwise all files are copied.
+        yarn pack --out package.tgz
+        mkdir -p "$out/libexec/$name"
+        tar xzvf package.tgz --directory "$out/libexec/$name" --strip-components=1
+
+        cp .yarnrc* ${lockfile} "$out/libexec/$name"
+        cp --recursive .yarn "$out/libexec/$name"
+
+        # If the project uses the node-modules linker, then
+        # include the node_modules folder in the package.
+        if [ -d node_modules ]; then
+          cp --recursive node_modules "$out/libexec/$name"
+        else
+          # Otherwise, assume PnP. Copy the loader into the package.
+          cp .pnp.* "$out/libexec/$name"
+        fi
       fi
 
       cd "$out/libexec/$name"
 
       # Invoke a plugin internal command to setup binaries.
+      mkdir -p "$out/bin"
       yarn nixify install-bin $out/bin
 
       # A package with node_modules doesn't need the cache
@@ -150,10 +158,12 @@ let
       inherit nodejs;
       yarn-freestanding = yarn;
       yarn = writeShellScriptBin "yarn" ''
-        exec '${yarn}/bin/yarn' --cwd '${project}/libexec/${project.name}' "$@"
+        exec '${yarn}/bin/yarn' --cwd '${overriddenProject}/libexec/${overriddenProject.name}' "$@"
       '';
     };
   });
+
+  overriddenProject = optionalOverride overrideAttrs project;
 
   cacheEntries = {
     "@babel/code-frame@npm:7.18.6" = { filename = "@babel-code-frame-npm-7.18.6-25229a7e34-195e2be317.zip"; sha512 = "195e2be3172d7684bf95cff69ae3b7a15a9841ea9d27d3c843662d50cdd7d6470fd9c8e64be84d031117e4a4083486effba39f9aef6bbb2c89f7f21bcfba33ba"; };
@@ -719,7 +729,7 @@ let
     "hoist-non-react-statics@npm:3.3.2" = { filename = "hoist-non-react-statics-npm-3.3.2-e7b709e6c1-b153827042.zip"; sha512 = "b1538270429b13901ee586aa44f4cc3ecd8831c061d06cb8322e50ea17b3f5ce4d0e2e66394761e6c8e152cd8c34fb3b4b690116c6ce2bd45b18c746516cb9e8"; };
     "hosted-git-info@npm:2.8.9" = { filename = "hosted-git-info-npm-2.8.9-62c44fa93f-c955394bda.zip"; sha512 = "c955394bdab888a1e9bb10eb33029e0f7ce5a2ac7b3f158099dc8c486c99e73809dca609f5694b223920ca2174db33d32b12f9a2a47141dc59607c29da5a62dd"; };
     "html-void-elements@npm:2.0.1" = { filename = "html-void-elements-npm-2.0.1-2e8871982c-06d41f13b9.zip"; sha512 = "06d41f13b9d5d6e0f39861c4bec9a9196fa4906d56cd5cf6cf54ad2e52a85bf960cca2bf9600026bde16c8331db171bedba5e5a35e2e43630c8f1d497b2fb658"; };
-    "http-cache-semantics@npm:4.1.0" = { filename = "http-cache-semantics-npm-4.1.0-860520a31f-974de94a81.zip"; sha512 = "974de94a81c5474be07f269f9fd8383e92ebb5a448208223bfb39e172a9dbc26feff250192ecc23b9593b3f92098e010406b0f24bd4d588d631f80214648ed42"; };
+    "http-cache-semantics@npm:4.1.1" = { filename = "http-cache-semantics-npm-4.1.1-1120131375-83ac0bc60b.zip"; sha512 = "83ac0bc60b17a3a36f9953e7be55e5c8f41acc61b22583060e8dedc9dd5e3607c823a88d0926f9150e571f90946835c7fe150732801010845c72cd8bbff1a236"; };
     "http-proxy-agent@npm:5.0.0" = { filename = "http-proxy-agent-npm-5.0.0-7f1f121b83-e2ee1ff165.zip"; sha512 = "e2ee1ff1656a131953839b2a19cd1f3a52d97c25ba87bd2559af6ae87114abf60971e498021f9b73f9fd78aea8876d1fb0d4656aac8a03c6caa9fc175f22b786"; };
     "https-proxy-agent@npm:5.0.1" = { filename = "https-proxy-agent-npm-5.0.1-42d65f358e-571fccdf38.zip"; sha512 = "571fccdf38184f05943e12d37d6ce38197becdd69e58d03f43637f7fa1269cf303a7d228aa27e5b27bbd3af8f09fd938e1c91dcfefff2df7ba77c20ed8dfc765"; };
     "humanize-ms@npm:1.2.1" = { filename = "humanize-ms-npm-1.2.1-e942bd7329-9c7a74a282.zip"; sha512 = "9c7a74a2827f9294c009266c82031030eae811ca87b0da3dceb8d6071b9bde22c9f3daef0469c3c533cc67a97d8a167cd9fc0389350e5f415f61a79b171ded16"; };
@@ -797,7 +807,7 @@ let
     "json-parse-even-better-errors@npm:2.3.1" = { filename = "json-parse-even-better-errors-npm-2.3.1-144d62256e-798ed4cf33.zip"; sha512 = "798ed4cf3354a2d9ccd78e86d2169515a0097a5c133337807cdf7f1fc32e1391d207ccfc276518cc1d7d8d4db93288b8a50ba4293d212ad1336e52a8ec0a941f"; };
     "json-schema-traverse@npm:0.4.1" = { filename = "json-schema-traverse-npm-0.4.1-4759091693-7486074d3b.zip"; sha512 = "7486074d3ba247769fda17d5181b345c9fb7d12e0da98b22d1d71a5db9698d8b4bd900a3ec1a4ffdd60846fc2556274a5c894d0c48795f14cb03aeae7b55260b"; };
     "json-stable-stringify-without-jsonify@npm:1.0.1" = { filename = "json-stable-stringify-without-jsonify-npm-1.0.1-b65772b28b-cff44156dd.zip"; sha512 = "cff44156ddce9c67c44386ad5cddf91925fe06b1d217f2da9c4910d01f358c6e3989c4d5a02683c7a5667f9727ff05831f7aa8ae66c8ff691c556f0884d49215"; };
-    "json5@npm:1.0.1" = { filename = "json5-npm-1.0.1-647fc8794b-e76ea23dbb.zip"; sha512 = "e76ea23dbb8fc1348c143da628134a98adf4c5a4e8ea2adaa74a80c455fc2cdf0e2e13e6398ef819bfe92306b610ebb2002668ed9fc1af386d593691ef346fc3"; };
+    "json5@npm:1.0.2" = { filename = "json5-npm-1.0.2-9607f93e30-866458a8c5.zip"; sha512 = "866458a8c58a95a49bef3adba929c625e82532bcff1fe93f01d29cb02cac7c3fe1f4b79951b7792c2da9de0b32871a8401a6e3c5b36778ad852bf5b8a61165d7"; };
     "json5@npm:2.2.1" = { filename = "json5-npm-2.2.1-44675c859c-74b8a23b10.zip"; sha512 = "74b8a23b102a6f2bf2d224797ae553a75488b5adbaee9c9b6e5ab8b510a2fc6e38f876d4c77dea672d4014a44b2399e15f2051ac2b37b87f74c0c7602003543b"; };
     "jsonc-parser@npm:3.2.0" = { filename = "jsonc-parser-npm-3.2.0-1896ece3b7-946dd9a5f3.zip"; sha512 = "946dd9a5f326b745aa326d48a7257e3f4a4b62c5e98ec8e49fa2bdd8d96cef7e6febf1399f5c7016114fd1f68a1c62c6138826d5d90bc650448e3cf0951c53c7"; };
     "jsonfile@npm:6.1.0" = { filename = "jsonfile-npm-6.1.0-20a4796cee-7af3b8e1ac.zip"; sha512 = "7af3b8e1ac8fe7f1eccc6263c6ca14e1966fcbc74b618d3c78a0a2075579487547b94f72b7a1114e844a1e15bb00d440e5d1720bfc4612d790a6f285d5ea8354"; };
@@ -1240,4 +1250,4 @@ let
   };
 
 in
-optionalOverride overrideAttrs project
+overriddenProject
