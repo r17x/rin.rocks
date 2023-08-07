@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1 id="toc">Rin.rocks - <code>r17{x}</code> Sites!</h1>
+<h1 id="toc">Rin.rocks - <code>r17{𝕏}</code> Sites!</h1>
   <p><strong>Hi 🙋‍♂️! I'am Rin</strong></p>
   <p>
   a Software Engineer, Interest in topic (φ + Losophy), (λ + μετα-Programming), D.x (Developer Experience), & Web Tech.
