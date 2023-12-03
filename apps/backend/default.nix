@@ -28,6 +28,7 @@ ocamlPackages.buildDunePackage {
     dream
     lwt_ppx
     reason
+    server-reason-react
   ];
 
   preBuild = ''

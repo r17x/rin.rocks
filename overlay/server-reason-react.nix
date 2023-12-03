@@ -1,33 +1,34 @@
-{ lib
-, buildDunePackage
+{ buildDunePackage
 , ppxlib
-, fetchFromGitHub
+, melange
 , reason
-, ocaml
-, cppo
-, menhir
-, menhirLib
-, menhirSdk
-, fix
-, merlin-extend
-, ppx_derivers
-, result
+, reason-native
+, server-reason-react-src
+, ocaml_pcre
+, lwt
+, lwt_ppx
+, uri
 , ...
 }:
 
 buildDunePackage {
+  name = "server-reason-react";
   pname = "server-reason-react";
-  version = "3234376";
-  src = fetchFromGitHub {
-    owner = "ml-in-barcelona";
-    repo = "server-reason-react";
-    rev = "b06ed5c48949fafa7c01e6313410129f3a10a983";
-    sha256 = "0im7cc2bkp5dfzgdpgkrc83hfjnf3rhfnf3qchx11rp9qd28sp5x";
-  };
-  useDune3 = true;
+  version = "n/a";
+  src = server-reason-react-src; # flake:inputs.server-reason-react-src
   propagatedBuildInputs = [
+    melange
     ppxlib
     reason
+    ocaml_pcre
+    lwt
+    lwt_ppx
+    uri
+  ];
+  nativeBuildInputs = [
+    reason
+    melange
+    reason-native.refmterr
   ];
   meta.homepage = "https://github.com/ml-in-barcelona/server-reason-react";
 }

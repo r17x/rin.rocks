@@ -48,10 +48,7 @@
     },
     "gitignore": {
       "inputs": {
-        "nixpkgs": [
-          "nix-precommit",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nix-precommit", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1660459072,
@@ -84,19 +81,15 @@
     },
     "nix-ocaml": {
       "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "flake-utils": ["flake-utils"],
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
-        "lastModified": 1676307142,
-        "narHash": "sha256-uD9lsUhAPCuCYcbgNMsF/ibLREf55L3nMXA2cQPfSos=",
+        "lastModified": 1701452273,
+        "narHash": "sha256-PbLXT1tyS/NW3xTLI8si00goFPCJdDr5/ZqmTKBFXI0=",
         "owner": "nix-ocaml",
         "repo": "nix-overlays",
-        "rev": "f3a5758d1329eaa110bd56ea328fb07183883a6f",
+        "rev": "a2c0ea994e0363b1fd06cde0f3e9449995a19588",
         "type": "github"
       },
       "original": {
@@ -110,9 +103,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils_2",
         "gitignore": "gitignore",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
@@ -131,11 +122,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1676549890,
-        "narHash": "sha256-sq/WcOEAl7gWrrfGkWdnyYazRyTf+enEim/o6LOQzI8=",
+        "lastModified": 1701336116,
+        "narHash": "sha256-kEmpezCR/FpITc6yMbAh4WrOCiT2zg5pSjnKrq51h5Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8c66bd1b68f4708c90dcc97c6f7052a5a7b33257",
+        "rev": "f5c27c6136db4d76c30e533c20517df6864c46ee",
         "type": "github"
       },
       "original": {
@@ -167,7 +158,24 @@
         "nix-filter": "nix-filter",
         "nix-ocaml": "nix-ocaml",
         "nix-precommit": "nix-precommit",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "server-reason-react-src": "server-reason-react-src"
+      }
+    },
+    "server-reason-react-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701452500,
+        "narHash": "sha256-XngB2xr96897khcOZW3NBjAelL4EDTtoOlO4sSAjnUo=",
+        "owner": "ml-in-barcelona",
+        "repo": "server-reason-react",
+        "rev": "4b1ed49536e441c861e04a78f523abb741d42c02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ml-in-barcelona",
+        "repo": "server-reason-react",
+        "type": "github"
       }
     }
   },

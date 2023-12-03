@@ -1,7 +1,7 @@
 { pkgs, shellHook }:
 
 let
-  inherit (pkgs) mkShell rin_rocks;
+  inherit (pkgs) mkShell rin_rocks ocamlPackages;
 
   run = pkg: "${pkgs.${pkg}}/bin/${pkg}";
 
@@ -31,7 +31,7 @@ let
     '')
   ];
 
-  ocamlDevDeps = with pkgs.ocamlPackages; [
+  ocamlDevDeps = with ocamlPackages; [
     merlin
     ocamlformat
     utop

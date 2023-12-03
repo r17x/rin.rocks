@@ -26,6 +26,10 @@
     nix-precommit.inputs = {
       nixpkgs.follows = "nixpkgs";
     };
+    server-reason-react-src = {
+      url = "github:ml-in-barcelona/server-reason-react";
+      flake = false;
+    };
   };
   outputs =
     { self
@@ -34,6 +38,7 @@
     , nix-filter
     , nix-precommit
     , flake-utils
+    , server-reason-react-src
     ,
     }:
     # Construct an output set that supports a number of default systems
@@ -44,8 +49,11 @@
       let
         # Legacy packages that have not been converted to flakes
         overlays = [
+          (final: prev: {
+            inherit server-reason-react-src;
+          })
           nix-filter.overlays.default
-          nix-ocaml.overlays.${system}
+          nix-ocaml.overlays.default
           self.overlays.default
         ];
 
